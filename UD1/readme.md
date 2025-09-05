@@ -10,8 +10,6 @@
 5. [Android Nativo: Evolución y Estado Actual](#android-nativo-evolución-y-estado-actual)
 6. [Flutter: La Apuesta de Google](#flutter-la-apuesta-de-google)
 7. [Desarrollo de Videojuegos Móviles](#desarrollo-de-videojuegos-móviles)
-8. [Actividades de Evaluación](#actividades-de-evaluación)
-9. [Recursos para el Curso](#recursos-para-el-curso)
 
 ---
 
@@ -581,74 +579,8 @@ Unreal Engine incluye todo lo necesario para crear juegos para móvil y multipla
 - Apps ultra-ligeras (<10MB)
 - Usado por King (Candy Crush)
 
-### 🎮 Géneros y Tecnologías Específicas
 
-#### Casual/Hypercasual Games
-- **Unity 2D** + **C#**
-- Desarrollo rápido (2-4 semanas)
-- Monetización por ads
-- Mecánicas simples, adictivas
 
-#### Mid-Core Games (RPG, Strategy)
-- **Unity 3D** o **Unreal**
-- Desarrollo largo (6-18 meses)
-- Monetización F2P + IAP
-- Mecánicas complejas, meta-game
-
-#### Premium/Console-Quality
-- **Unreal Engine** principalmente
-- Desarrollo AAA (12-36 meses)
-- Monetización premium ($10-60)
-- Gráficos fotorealistas
-
-### 📱 Consideraciones Técnicas Móviles
-
-#### Optimización de Performance:
-```csharp
-// Unity - Optimización para móviles
-public class MobileOptimization : MonoBehaviour
-{
-    void Start()
-    {
-        // Reducir calidad gráfica para móviles
-        if (Application.platform == RuntimePlatform.Android || 
-            Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            QualitySettings.SetQualityLevel(1); // Nivel bajo/medio
-            Application.targetFrameRate = 30;   // 30 FPS en móviles
-            Screen.sleepTimeout = SleepTimeout.NeverSleep;
-        }
-    }
-    
-    void Update()
-    {
-        // Pooling de objetos en lugar de Instantiate/Destroy
-        // Usar LOD (Level of Detail) para modelos
-        // Comprimir texturas automáticamente
-    }
-}
-```
-
-#### Controles Táctiles:
-- **Touch Input**: Gestos naturales
-- **Virtual Joysticks**: Para juegos complejos
-- **Gyroscope**: Controles por inclinación
-- **Haptic Feedback**: Vibración contextual
-
-### 🎯 Oportunidades de Mercado 2025
-
-#### Nichos Emergentes:
-1. **AR Games**: Pokémon GO successors
-2. **Cloud Gaming**: Stadia, xCloud integration  
-3. **Blockchain Games**: NFT integration, P2E
-4. **Educational Games**: Duolingo-style gamification
-5. **Health & Fitness**: Ring Fit Adventure móvil
-
-#### Consideraciones de Monetización:
-- **F2P + IAP**: 95% del mercado móvil
-- **Battle Pass**: Modelo Fortnite adaptado
-- **Ads Rewarded**: Publicidad voluntaria
-- **Subscription**: Modelos premium recurrentes
 
 ---
 
