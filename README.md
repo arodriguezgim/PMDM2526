@@ -7,8 +7,8 @@ Programación Multimedia y Dispositivos Móviles - 2º DAM - IES Segundo de Chom
 
 ## 1ª Evaluación 
 
-- UD1 - Introduccion y panorama en el desarrollo de Apps en 2025
-- UD2 - Introducción a Kotlin
+- [UD1 - Introduccion y panorama en el desarrollo de Apps en 2025](./UD1/readme.md)
+- UD2 - Kotlin, el lenguaje nativo de Android
 - UD3 - Desarrollo de Apps en lenguajes nativos - Android
 - UD4 - Desarrollo Avanzado de Apps en Android
 - UD5 - Arquitectura MVVM en aplicaciones de Android 

@@ -1,23 +1,37 @@
 # Unidad 1: Historia y Panorama Actual del Desarrollo Móvil (2025)
 
+> **Asignatura**: Programación Multimedia y Dispositivos Móviles  
+> **Grado**: Formación Profesional - Grado Superior  
+> **Duración**: 3 horas  
+> **Tecnologías del curso**: Android Nativo + Flutter
 
 ## 📚 Índice
 
-1. [Introducción](#introducción-y-objetivos)
+1. [Introducción y Objetivos](#introducción-y-objetivos)
 2. [Historia del Desarrollo Móvil - Timeline Acelerado](#historia-del-desarrollo-móvil)
 3. [La Era de los Smartphones: iOS vs Android](#la-era-de-los-smartphones)
 4. [Panorama Actual 2025](#panorama-actual-2025)
 5. [Android Nativo: Evolución y Estado Actual](#android-nativo-evolución-y-estado-actual)
 6. [Flutter: La Apuesta de Google](#flutter-la-apuesta-de-google)
-7. [Desarrollo de Videojuegos Móviles](#desarrollo-de-videojuegos-móviles)
+7. [Panorama de Tecnologías Multiplataforma 2025](#panorama-de-tecnologías-multiplataforma-2025)
+8. [Desarrollo de Videojuegos Móviles](#desarrollo-de-videojuegos-móviles)
+9. [Actividades de Evaluación](#actividades-de-evaluación)
+10. [Recursos para el Curso](#recursos-para-el-curso)
 
 ---
 
-## 🎯 Introducción
+## 🎯 Introducción y Objetivos
+
+### Objetivos de la Unidad (3 horas)
+Al finalizar esta unidad, serás capaz de:
+- **Comprender** la evolución del desarrollo móvil y su estado actual
+- **Identificar** las ventajas de Android nativo y Flutter
+- **Analizar** el panorama del desarrollo de videojuegos móviles
+- **Contextualizar** las tecnologías que aprenderemos en el curso
 
 ### ¿Por qué Estas Tecnologías?
 
-#### 🤖 Android Nativo 
+#### 🤖 Android Nativo (sin Jetpack Compose)
 - **Fundamentos sólidos**: Base para entender cómo funciona Android
 - **Control total**: Acceso completo a APIs del sistema
 - **Mercado laboral**: Muchas empresas aún usan Views tradicionales
@@ -57,14 +71,44 @@ timeline
              : Código abierto
              : Múltiples fabricantes
     
-    section Era Moderna
-        2010s : Boom de las Apps
-             : Redes sociales móviles
-             : Servicios bajo demanda
+    section Era Multiplataforma
+        2011 : PhoneGap/Cordova
+             : Aplicaciones híbridas
+             : HTML5 + JavaScript
         
+        2012 : Xamarin
+             : Desarrollo nativo con C#
+             : Compartir lógica de negocio
+        
+        2013 : Ionic Framework
+             : Apps híbridas mejoradas
+             : Angular + Cordova
+    
+    section Era Moderna
+        2015 : React Native
+             : Learn once, write anywhere
+             : Facebook backing
+        
+        2017 : Flutter Alpha
+             : Google's cross-platform bet
+             : Dart language
+        
+        2018 : PWA Revolution
+             : Progressive Web Apps
+             : Native-like web experiences
+        
+        2019 : Capacitor
+             : Ionic's native bridge
+             : Modern web apps
+    
+    section Era Actual
         2020s : IA y 5G
              : Apps inteligentes
              : Experiencias inmersivas
+        
+        2021 : .NET MAUI
+             : Microsoft's unified platform
+             : Evolución de Xamarin
         
         2025 : Flutter + IA Generativa
              : Desarrollo híbrido dominante
@@ -77,10 +121,23 @@ timeline
 |-----|--------|-------------------------|
 | **2008** | Lanzamiento Android SDK | Desarrollo nativo gratuito |
 | **2008** | App Store abierto | Modelo de monetización |
+| **2009** | PhoneGap (Adobe) | Primeras apps híbridas HTML5 |
 | **2011** | Android 4.0 (API 14+) | Fragmentos y UI moderna |
-| **2017** | Flutter Alpha | Desarrollo multiplataforma |
+| **2011** | Apache Cordova | Open source de PhoneGap |
+| **2012** | Xamarin fundada | Desarrollo nativo con C# |
+| **2013** | Ionic Framework | Apps híbridas con Angular |
+| **2015** | React Native | Facebook revoluciona cross-platform |
+| **2016** | Xamarin comprada por Microsoft | Integración con Visual Studio |
+| **2017** | Flutter Alpha | Google entra al juego multiplataforma |
+| **2018** | PWA mainstream | Chrome y Android mejoran soporte |
 | **2019** | Flutter 1.0 | Producción ready |
+| **2019** | Ionic Capacitor | Sucesor de Cordova |
+| **2020** | Flutter Web estable | Un código para móvil y web |
 | **2021** | Jetpack Compose Stable | UI declarativa Android |
+| **2021** | .NET MAUI | Evolución de Xamarin Forms |
+| **2022** | React Native Fabric | Nueva arquitectura con JSI |
+| **2023** | Flutter 3.10 | Material 3 y performance mejorado |
+| **2024** | Ionic 8 | Mejoras significativas en rendimiento |
 | **2025** | Flutter 4.0 | Integración IA nativa |
 
 ---
@@ -154,9 +211,12 @@ public class MainActivity extends AppCompatActivity {
 |-----------|--------------|-----------|
 | **Nativo iOS** | Swift + SwiftUI | ↗️ Crecimiento estable |
 | **Nativo Android** | Kotlin + Jetpack Compose | ↗️ Modernización |
-| **Multiplataforma** | Flutter, React Native | 🚀 Explosión |
-| **Híbrido** | Ionic, Capacitor | ↘️ Declive gradual |
+| **Multiplataforma Nativo** | Flutter, React Native | 🚀 Explosión |
+| **Multiplataforma .NET** | .NET MAUI (ex-Xamarin) | ↗️ Resurgimiento empresarial |
+| **Híbrido Web** | Ionic + Capacitor | ↘️ Declive gradual |
+| **Híbrido Legacy** | Cordova/PhoneGap | 📉 En desuso |
 | **PWA** | Angular, React + PWA APIs | ↗️ Resurgimiento |
+| **Low-Code** | Flutter Flow, Glide Apps | 🚀 Tendencia emergente |
 
 ### 🎯 ¿Por Qué Flutter Está Ganando?
 
@@ -489,6 +549,252 @@ class _CounterPageState extends State<CounterPage> {
 
 ---
 
+## 🔄 Panorama de Tecnologías Multiplataforma 2025
+
+El desarrollo multiplataforma ha evolucionado significativamente desde las primeras soluciones híbridas. Cada tecnología tiene sus fortalezas y casos de uso específicos.
+
+### 📊 Comparativa de Frameworks Multiplataforma
+
+| Framework | Lanzamiento | Lenguaje | Performance | Curva Aprendizaje | Adopción 2025 |
+|-----------|-------------|----------|-------------|-------------------|---------------|
+| **Flutter** | 2017 | Dart | 95% nativo | Media | 🚀 Alta |
+| **React Native** | 2015 | JavaScript/TypeScript | 85% nativo | Baja | 📈 Alta |
+| **.NET MAUI** | 2021 | C# | 90% nativo | Alta | 📊 Media |
+| **Ionic** | 2013 | JavaScript/TypeScript | 70% web | Baja | 📉 Declive |
+| **Xamarin** | 2012 | C# | 95% nativo | Alta | 📉 Legacy |
+
+### ⚛️ React Native - La Apuesta de Meta
+
+**Philosophy**: "Learn once, write anywhere" - Aprovecha el conocimiento de React para desarrollo móvil.
+
+#### Ventajas de React Native:
+- **Ecosistema JavaScript**: Aprovecha npm y la comunidad JS
+- **Hot Reloading**: Desarrollo rápido como Flutter  
+- **Native Modules**: Fácil integración con código nativo
+- **Community**: Segunda comunidad más grande después de Flutter
+- **Facebook/Meta backing**: Usado en Instagram, Facebook, WhatsApp
+
+#### Casos de Uso Ideales:
+- Equipos con experiencia en React
+- Apps con mucha lógica de negocio
+- Integración con APIs REST complejas
+- Startups que necesitan rapidez de desarrollo
+
+```javascript
+// Ejemplo React Native - Component básico
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+
+const CounterApp = () => {
+  const [count, setCount] = useState(0);
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Contador: {count}</Text>
+      <TouchableOpacity 
+        style={styles.button}
+        onPress={() => setCount(count + 1)}
+      >
+        <Text style={styles.buttonText}>Incrementar</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 20,
+  },
+  button: {
+    backgroundColor: '#007AFF',
+    padding: 15,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+  },
+});
+
+export default CounterApp;
+```
+
+### 🏢 .NET MAUI - El Resurgimiento de Microsoft
+
+**.NET Multi-platform App UI** es la evolución de Xamarin.Forms, unificando el desarrollo para móvil, desktop y web.
+
+#### Ventajas de .NET MAUI:
+- **Ecosistema .NET**: Integración total con Visual Studio
+- **Performance nativa**: Compilación AOT como Flutter
+- **Enterprise ready**: Ideal para empresas Microsoft-centric
+- **Hot Reload**: Desarrollo rápido visual
+- **Unified project**: Un proyecto para todas las plataformas
+
+#### Casos de Uso Ideales:
+- Empresas con stack Microsoft (.NET, Azure, Office 365)
+- Apps empresariales con lógica compleja
+- Desarrolladores con experiencia en C#
+- Necesidad de integración con servicios Microsoft
+
+```csharp
+// Ejemplo .NET MAUI - Page con MVVM
+using Microsoft.Maui.Controls;
+
+namespace MauiApp.Views;
+
+public partial class CounterPage : ContentPage
+{
+    private int _count = 0;
+    
+    public CounterPage()
+    {
+        InitializeComponent();
+    }
+
+    private void OnCounterClicked(object sender, EventArgs e)
+    {
+        _count++;
+        CounterLabel.Text = $"Contador: {_count}";
+        
+        if (_count == 1)
+            CounterButton.Text = "Click me again";
+    }
+}
+```
+
+```xml
+<!-- CounterPage.xaml -->
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="MauiApp.Views.CounterPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="30,0" 
+                           VerticalOptions="Center">
+            
+            <Label x:Name="CounterLabel"
+                   Text="Contador: 0"
+                   FontSize="24"
+                   HorizontalOptions="Center" />
+
+            <Button x:Name="CounterButton"
+                    Text="Click me"
+                    Clicked="OnCounterClicked"
+                    HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
+```
+
+### 🌊 Ionic - El Veterano en Transición
+
+Ionic ha evolucionado desde sus inicios como framework híbrido hasta convertirse en una plataforma completa con **Capacitor**.
+
+#### Evolución de Ionic:
+- **Ionic 1** (2013): AngularJS + Cordova
+- **Ionic 2-7** (2016-2023): Angular + mejor performance  
+- **Ionic 8** (2024): Framework agnostic (Angular, React, Vue)
+- **Capacitor**: Reemplazo moderno de Cordova
+
+#### Ventajas actuales:
+- **Web-first**: Desarrollo web que funciona en móvil
+- **Framework choice**: Angular, React, Vue compatible
+- **PWA excellence**: Las mejores PWAs del mercado
+- **Capacitor**: Bridge nativo moderno y eficiente
+
+#### Casos de Uso Ideales:
+- Equipos web que quieren expandir a móvil
+- Apps con mucho contenido (noticias, e-commerce)
+- PWAs que necesitan funcionalidad nativa
+- Prototipado rápido
+
+```typescript
+// Ejemplo Ionic + Angular
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-counter',
+  template: `
+    <ion-header [translucent]="true">
+      <ion-toolbar>
+        <ion-title>Contador App</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content [fullscreen]="true" class="ion-padding">
+      <div class="container">
+        <ion-text color="primary">
+          <h2>Contador: {{ count }}</h2>
+        </ion-text>
+        
+        <ion-button 
+          expand="block" 
+          (click)="increment()"
+          color="primary">
+          Incrementar
+        </ion-button>
+      </div>
+    </ion-content>
+  `,
+  styleUrls: ['./counter.page.scss']
+})
+export class CounterPage {
+  count: number = 0;
+
+  increment() {
+    this.count++;
+  }
+}
+```
+
+### 📊 Criterios de Selección 2025
+
+#### ¿Cuál Elegir en 2025?
+
+**Flutter si:**
+- ✅ Necesitas performance near-native
+- ✅ Quieres una sola codebase para móvil, web y desktop
+- ✅ El equipo puede aprender Dart
+- ✅ Google backing es importante
+
+**React Native si:**
+- ✅ El equipo ya conoce React/JavaScript
+- ✅ Necesitas flexibilidad en native modules
+- ✅ Quieres aprovechar el ecosistema npm
+- ✅ Meta backing y comunidad son importantes
+
+**.NET MAUI si:**
+- ✅ Empresa con stack Microsoft
+- ✅ Desarrolladores con experiencia C#
+- ✅ Necesitas integración enterprise
+- ✅ Budget permite licencias Microsoft
+
+**Ionic + Capacitor si:**
+- ✅ Equipo web (Angular/React/Vue)
+- ✅ PWA es prioridad
+- ✅ Prototipado rápido
+- ✅ Budget limitado
+
+### 🔮 Tendencias Futuras
+
+#### Lo que Viene:
+- **AI Integration**: Todos los frameworks integrarán IA
+- **Performance parity**: Gap con nativo cada vez menor
+- **Developer Experience**: Hot reload y debugging mejorados
+- **Web convergence**: PWA + native features convergiendo
+
+---
+
 ## 🎮 Desarrollo de Videojuegos Móviles
 
 El mercado de videojuegos móviles representa **$103 mil millones** en 2025, siendo el segmento más grande de la industria gaming.
@@ -579,29 +885,23 @@ Unreal Engine incluye todo lo necesario para crear juegos para móvil y multipla
 - Apps ultra-ligeras (<10MB)
 - Usado por King (Candy Crush)
 
+### 🎮 Géneros y Tecnologías Específicas
 
+#### Casual/Hypercasual Games
+- **Unity 2D** + **C#**
+- Desarrollo rápido (2-4 semanas)
+- Monetización por ads
+- Mecánicas simples, adictivas
 
+#### Mid-Core Games (RPG, Strategy)
+- **Unity 3D** o **Unreal**
+- Desarrollo largo (6-18 meses)
+- Monetización F2P + IAP
+- Mecánicas complejas, meta-game
 
----
+#### Premium/Console-Quality
+- **Unreal Engine** principalmente
+- Desarrollo AAA (12-36 meses)
+- Monetización premium ($10-60)
+- Gráficos fotorealistas
 
-## 🔮 Lo que Viene Después
-
-### 📅 Roadmap 
-
-#### **Unidad 2**: Fundamentos Android Nativo (6 horas)
-- Activities y Fragments lifecycle
-- Layouts y Views tradicionales
-- Intents y navegación
-- Almacenamiento local (SharedPreferences, SQLite)
-
-#### **Unidad 3**: Android Avanzado (8 horas)
-- RecyclerView y adaptadores
-- Networking y APIs REST
-- Cámaras y multimedia
-- Sensores y geolocalización
-
-#### **Unidad 4**: Introducción a Flutter (6 horas)
-- Dart language basics
-- Widgets fundamentales
-- Stateful vs Stateless widgets
--
