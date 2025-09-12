@@ -8,8 +8,8 @@ Programación Multimedia y Dispositivos Móviles - 2º DAM - IES Segundo de Chom
 ## 1ª Evaluación 
 
 - [UD1 - Introduccion y panorama en el desarrollo de Apps en 2025](./UD1/readme.md)
-- UD2 - Kotlin, el lenguaje nativo de Android
-- UD3 - Desarrollo de Apps en lenguajes nativos - Android
+- [UD2 - Kotlin, el lenguaje nativo de Android](./UD2/readme.md)
+- [UD3 - Estructura básica de una App en Android](./UD3/readme.md)
 - UD4 - Desarrollo Avanzado de Apps en Android
 - UD5 - Arquitectura MVVM en aplicaciones de Android 
 - UD6 - Persistencia de Datos en Android
@@ -34,4 +34,4 @@ Programación Multimedia y Dispositivos Móviles - 2º DAM - IES Segundo de Chom
 - UD11 - Historia e introducción a los motores de videojuegos: Unity
 - UD12 - Desarrollo de videojuegos 2D y 3D
 
-## I.E.S Segundo de Chomón - Curso 24 25
+## I.E.S Segundo de Chomón - Curso 25 26
