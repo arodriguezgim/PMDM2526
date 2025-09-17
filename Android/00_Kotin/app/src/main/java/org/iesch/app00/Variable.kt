@@ -13,5 +13,7 @@ var cadena: String = "Es un contenedor de dame lo que quieras"
 var esMartes: Boolean = true // Solo adminte valores true o false
 
 fun main() {
+   var edadFinal = edad + edadGrande
 
+    println( "El valor de la variable edad $edad")
 }
