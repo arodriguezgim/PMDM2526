@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -12,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -34,12 +36,15 @@ class MainActivity : AppCompatActivity() {
 
             if (edadString.isEmpty()){
                 // No hacemos nada
+                // 3 Me creo un mensaje de tipo Toast
+                Toast.makeText( this, R.string.texto_alerta, Toast.LENGTH_LONG).show()
             } else {
                 val edadInt = edadString.toInt()
 
                 val dogAge = edadInt * 7
 
-                resultText.text = "Si fueras un perro, tu edad sería de $dogAge años."
+                val resultadoString = getString(R.string.resulta_format, dogAge)
+                resultText.text = resultadoString
             }
 
 
