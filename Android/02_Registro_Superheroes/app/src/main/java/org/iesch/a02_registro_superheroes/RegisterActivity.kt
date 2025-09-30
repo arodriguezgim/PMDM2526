@@ -42,10 +42,10 @@ class RegisterActivity : AppCompatActivity() {
         val intent = Intent(this, DetalleHeroeActivity::class.java)
 
         // Añado los valores al Intent con la función putExtra
-        intent.putExtra("heroName", superHeroName)
-        intent.putExtra( "alter_ego", alterEgo)
-        intent.putExtra("bio",bio)
-        intent.putExtra("power", power)
+        intent.putExtra(DetalleHeroeActivity.HERO_NAME ,superHeroName)
+        intent.putExtra(DetalleHeroeActivity.ALTER_EGO, alterEgo)
+        intent.putExtra(DetalleHeroeActivity.BIO,bio)
+        intent.putExtra(DetalleHeroeActivity.POWER, power)
 
         startActivity(intent)
     }

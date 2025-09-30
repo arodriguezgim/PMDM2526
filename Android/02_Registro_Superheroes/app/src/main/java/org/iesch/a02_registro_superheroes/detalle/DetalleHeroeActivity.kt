@@ -9,6 +9,15 @@ import org.iesch.a02_registro_superheroes.R
 import org.iesch.a02_registro_superheroes.databinding.ActivityDetalleHeroeBinding
 
 class DetalleHeroeActivity : AppCompatActivity() {
+
+    // 3 - PAra no cometer equivocaciones en las keys, me creo un companion object
+    // Un companion object es un objeto que pertenece a una clase de Kotlin y permite definir miembros estáticos
+    companion object {
+        const val HERO_NAME = "heroName"
+        const val ALTER_EGO = "alter_ego"
+        const val BIO = "bio"
+        const val POWER = "power"
+    }
     private lateinit var binding: ActivityDetalleHeroeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,10 +32,10 @@ class DetalleHeroeActivity : AppCompatActivity() {
         //  1 - Recibimos  los objetos del Intent
         // Un objeto Bundle es un contenedor de datos que permite almacenar y transportar multiples valores en Activyties o Fragmentos
         val bundle = intent.extras!!
-        val superHeroName = bundle.getString("heroName") ?: "No hay nombre"
-        val alterEgo = bundle.getString("alter_ego") ?: "No hay alter ego"
-        val bio = bundle.getString("bio") ?: "No hay bio"
-        val power = bundle.getFloat("power")
+        val superHeroName = bundle.getString(HERO_NAME) ?: "No hay nombre"
+        val alterEgo = bundle.getString(ALTER_EGO) ?: "No hay alter ego"
+        val bio = bundle.getString(BIO) ?: "No hay bio"
+        val power = bundle.getFloat(POWER)
         // 2 - Rellenamos con los campos que hemos recibido del intent
         binding.tvHeroNameResult.text = superHeroName
         binding.tvAlterEgoResult.text = alterEgo
