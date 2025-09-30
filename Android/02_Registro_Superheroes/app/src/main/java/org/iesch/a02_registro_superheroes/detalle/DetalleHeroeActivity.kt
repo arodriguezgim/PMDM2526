@@ -1,5 +1,6 @@
 package org.iesch.a02_registro_superheroes.detalle
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -13,12 +14,13 @@ class DetalleHeroeActivity : AppCompatActivity() {
 
     // 3 - PAra no cometer equivocaciones en las keys, me creo un companion object
     // Un companion object es un objeto que pertenece a una clase de Kotlin y permite definir miembros estáticos
-    companion object {
+    companion object {/*
         const val HERO_NAME = "heroName"
         const val ALTER_EGO = "alter_ego"
         const val BIO = "bio"
-        const val POWER = "power"
+        const val POWER = "power"*/
         const val SUPERHEROE_KEY = "super_heroe"
+        const val FOTO_KEY = "foto"
     }
     private lateinit var binding: ActivityDetalleHeroeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +33,7 @@ class DetalleHeroeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val bundle = intent.extras!!
         // 8 - Recibimos el Objeto SuperHeroe del intent
         val superHeroe = if ( android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
             // Para versiones 33 o superior
@@ -39,6 +42,7 @@ class DetalleHeroeActivity : AppCompatActivity() {
             @Suppress("DEPRECATION")
             intent.getParcelableExtra<SuperHeroe>(SUPERHEROE_KEY)
         }
+        val bitmap = bundle.getParcelable<Bitmap>(FOTO_KEY)!!
 
 
 
@@ -54,6 +58,9 @@ class DetalleHeroeActivity : AppCompatActivity() {
         binding.tvAlterEgoResult.text = superHeroe?.alterEgo ?: "No hay alter ego"
         binding.tvBioResult.text = superHeroe?.bio ?: "No hay Bio"
         binding.rbResultado.rating = superHeroe?.power ?: 0f
+
+        // 14 Asigno la imagen a la imagenView
+        binding.imageView.setImageBitmap(bitmap)
     }
 }
 

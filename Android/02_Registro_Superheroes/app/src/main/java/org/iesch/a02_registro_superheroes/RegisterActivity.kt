@@ -8,6 +8,7 @@ import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import org.iesch.a02_registro_superheroes.databinding.ActivityRegisterBinding
@@ -23,8 +24,8 @@ class RegisterActivity : AppCompatActivity() {
     private val getContent = registerForActivityResult(ActivityResultContracts.TakePicturePreview()){
         // Esto nos va a devolver un objeto de tipo bitmap
         bitmap ->
-        heroBitmap = bitmap
-        heroImage.setImageBitmap(heroBitmap)
+            heroBitmap = bitmap
+            heroImage.setImageBitmap(heroBitmap)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,6 +67,8 @@ class RegisterActivity : AppCompatActivity() {
 
         val intent = Intent(this, DetalleHeroeActivity::class.java)
         intent.putExtra(DetalleHeroeActivity.SUPERHEROE_KEY, superHeroe)
+        // 12 - Añado el objeto bitmap al intent
+        intent.putExtra(DetalleHeroeActivity.FOTO_KEY, heroImage.drawable.toBitmap())
         startActivity(intent)
     }
 }
