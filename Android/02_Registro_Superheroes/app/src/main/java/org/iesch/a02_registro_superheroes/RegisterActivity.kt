@@ -71,7 +71,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun openCamera() {
         // 2 - Ahora a quí debemos crear un path temporal para guardar la imagen
         val imageFile = createImageFile()
-        // Ahora ya tenemos el File, pero lo que necesitamos es el uri
+        // 4-  Ahora ya tenemos el File, pero lo que necesitamos es el uri
         // Como estamospor encima de la SDK 24 obtendremos el Uri a través de FileProvider
         // FileProvider lo que hace es compartir el file con otras aplicaciones de forma segura
         val uri = FileProvider.getUriForFile(
@@ -79,6 +79,7 @@ class RegisterActivity : AppCompatActivity() {
             "${applicationContext.packageName}.provider",
             imageFile
         )
+        // 5 - Ahora le pasamos el uri a la funcion launcher
         getContent.launch(uri)
     }
 
@@ -86,7 +87,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun createImageFile() : File {
         val fileName = "superhero_image"
         // Esto será el directorio donde vamos a almcenar la imagen. Por defecto es DIRECTORY_PICTURES
-        val fileDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        val fileDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES )
         // creamos nuestro file, y aqui nos pide el nombre, el formato, y el directorio
         val imageFile = File.createTempFile(fileName, ".jpg", fileDirectory )
         // Ahora ya podemos guardar el path en la variable global
@@ -98,7 +99,8 @@ class RegisterActivity : AppCompatActivity() {
 
         val intent = Intent(this, DetalleHeroeActivity::class.java)
         intent.putExtra(DetalleHeroeActivity.SUPERHEROE_KEY, superHeroe)
-        intent.putExtra(DetalleHeroeActivity.FOTO_KEY, heroImage.drawable.toBitmap())
+        // 7 . Pasamos solamente el picturePath
+        intent.putExtra(DetalleHeroeActivity.FOTO_KEY, picturePath)
         startActivity(intent)
     }
 }
