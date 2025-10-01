@@ -10,6 +10,7 @@ import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -70,7 +71,15 @@ class RegisterActivity : AppCompatActivity() {
     private fun openCamera() {
         // 2 - Ahora a quí debemos crear un path temporal para guardar la imagen
         val imageFile = createImageFile()
-        //getContent.launch()
+        // Ahora ya tenemos el File, pero lo que necesitamos es el uri
+        // Como estamospor encima de la SDK 24 obtendremos el Uri a través de FileProvider
+        // FileProvider lo que hace es compartir el file con otras aplicaciones de forma segura
+        val uri = FileProvider.getUriForFile(
+            this,
+            "${applicationContext.packageName}.provider",
+            imageFile
+        )
+        getContent.launch(uri)
     }
 
     //3 - Esta función crea un File y de ese File recupreraremos el uri.
