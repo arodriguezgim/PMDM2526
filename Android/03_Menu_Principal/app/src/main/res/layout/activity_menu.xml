@@ -123,7 +123,7 @@
                     android:layout_height="170dp"
                     android:layout_marginStart="12dp"
                     android:layout_weight="0.5"
-                    android:background="@drawable/btn_background_1">
+                    android:background="@drawable/btn_background_2">
 
                     <TextView
                         android:id="@+id/tv_edad_canina2"
@@ -167,9 +167,9 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.5"
                     android:layout_marginEnd="12dp"
-                    android:background="@drawable/btn_background_1">
+                    android:layout_weight="0.5"
+                    android:background="@drawable/btn_background_3">
 
                     <ImageView
                         android:id="@+id/ic_cerebro"
@@ -206,9 +206,9 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="170dp"
-                    android:layout_weight="0.5"
                     android:layout_marginStart="12dp"
-                    android:background="@drawable/btn_background_1">
+                    android:layout_weight="0.5"
+                    android:background="@drawable/btn_background_4">
 
                     <TextView
                         android:id="@+id/tv_api"
