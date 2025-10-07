@@ -88,13 +88,13 @@
 
                     <ImageView
                         android:id="@+id/ic_etiqueta"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/btn_1" />
+                        app:srcCompat="@drawable/baseline_catching_pokemon_24" />
 
                     <ImageView
                         android:id="@+id/ic_trans_etiqueta"
