@@ -4,6 +4,8 @@ import android.R
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 
@@ -29,7 +31,9 @@ class VersionesAndroidAdapter( val listaVersiones: List<String>) : RecyclerView.
         holder: AndroidVersionViewHolder,
         position: Int
     ) {
-        TODO("Not yet implemented")
+        // Paso 6: este es el metodo que pinta los atributos
+        val nombre_version = listaVersiones[ position ]
+        holder.render( nombre_version )
     }
 
     // Paso 4: Este metodo devuelve el numero todal de elementos
@@ -40,4 +44,24 @@ class VersionesAndroidAdapter( val listaVersiones: List<String>) : RecyclerView.
 
 class AndroidVersionViewHolder(view: View ) : RecyclerView.ViewHolder(view) {
 
+    // Paso 7: Aqui iria el codigo para pintar los atributos
+    // Metodo de conveniencia para usar los datos
+    fun render(version: String){
+        itemView.findViewById<TextView>(R.id.text1).text = version
+
+
+        // Paso 10: Añadir el listener para tomar el control
+        itemView.setOnClickListener {
+            Toast.makeText(itemView.context, version, Toast.LENGTH_LONG).show()
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
