@@ -1,6 +1,7 @@
 package org.iesch.a03_menu_principal.apirazas
 
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -85,6 +86,7 @@ class RazasApiActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
                     // 15 Mostraremos un error en un Toast
                     showError()
                 }
+                hideKeyBoard()
             }
 
         }
@@ -92,6 +94,12 @@ class RazasApiActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     private fun showError() {
         Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_LONG).show()
+    }
+
+    private fun hideKeyBoard(){
+        // Ocultamos el teclado
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.main.windowToken, 0)
     }
 
     // 17 - Implementamos las dos funciones y las completamos
@@ -107,5 +115,7 @@ class RazasApiActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         // Este metodo nos avisará cada vez que el texto cambie, y aquí no quiero hacer nada.
         return true
     }
+
+
 
 }
