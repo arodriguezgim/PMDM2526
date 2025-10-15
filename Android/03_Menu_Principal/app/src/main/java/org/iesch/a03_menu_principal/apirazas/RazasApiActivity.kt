@@ -1,8 +1,10 @@
 package org.iesch.a03_menu_principal.apirazas
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +19,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class RazasApiActivity : AppCompatActivity() {
+// 16 Como voy a usar el SearchView necesito decírselo al Activity
+class RazasApiActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     private lateinit var binding: ActivityRazasApiBinding
 
     // 9
@@ -36,6 +39,8 @@ class RazasApiActivity : AppCompatActivity() {
             insets
         }
 
+        // 19
+        binding.svDogs.setOnQueryTextListener( this )
         //  1 - Creamos un metodo que inicie el RecyclerView
         initRecyclerView()
 
@@ -66,23 +71,41 @@ class RazasApiActivity : AppCompatActivity() {
             // Lo haré mediante runOnUiThread
 
             runOnUiThread {
-                // to do el codigo que se ejecute aquí lo hará en el hilo principal
-                // 12 - Almacenamos en una variable las imagenes.
-                val imagenes = puppies?.images ?: emptyList()
-                // 13 Primero borro to do lo que tengamos y añado los datos recibidos
-                dogImages.clear()
-                dogImages.addAll( imagenes )
-                // 14 - Avisamos al adaptador de que han habido cambios
-                adapter.notifyDataSetChanged()
-
-            }
-            if ( call.isSuccessful ){
-                // Mostraremos el RecyclerView
-            } else {
-                // Mostraremos un error en un Toast
+                // Como el if pintará un Toast o el recycler lo metemos en el hilo principal
+                if ( call.isSuccessful ){
+                    // Mostraremos el RecyclerView
+                    // 12 - Almacenamos en una variable las imagenes.
+                    val imagenes = puppies?.images ?: emptyList()
+                    // 13 Primero borro to do lo que tengamos y añado los datos recibidos
+                    dogImages.clear()
+                    dogImages.addAll( imagenes )
+                    // 14 - Avisamos al adaptador de que han habido cambios
+                    adapter.notifyDataSetChanged()
+                } else {
+                    // 15 Mostraremos un error en un Toast
+                    showError()
+                }
             }
 
         }
+    }
+
+    private fun showError() {
+        Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_LONG).show()
+    }
+
+    // 17 - Implementamos las dos funciones y las completamos
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        // 18 Cuando pulsamos buscar se llamará a este mét odo
+        if ( !query.isNullOrEmpty() ){
+            buscarPorRaza( query.lowercase() )
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        // Este metodo nos avisará cada vez que el texto cambie, y aquí no quiero hacer nada.
+        return true
     }
 
 }
