@@ -88,13 +88,13 @@
 
                     <ImageView
                         android:id="@+id/ic_etiqueta"
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/baseline_catching_pokemon_24" />
+                        app:srcCompat="@drawable/dog" />
 
                     <ImageView
                         android:id="@+id/ic_trans_etiqueta"
@@ -108,7 +108,7 @@
                         android:id="@+id/tv_edad_canina"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="10dp"
                         android:text="Edad Canina"
                         android:textColor="@color/white"
                         android:textSize="18sp"
@@ -216,7 +216,7 @@
                         android:id="@+id/tv_api"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="10dp"
                         android:text="API Rest Razas"
                         android:textColor="@color/white"
                         android:textSize="18sp"
@@ -227,13 +227,13 @@
 
                     <ImageView
                         android:id="@+id/ic_api"
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/bulldog_5157920" />
+                        app:srcCompat="@drawable/pets" />
 
                     <ImageView
                         android:id="@+id/ic_trans_api"
