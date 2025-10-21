@@ -11,6 +11,7 @@ Programación Multimedia y Dispositivos Móviles - 2º DAM - IES Segundo de Chom
 - [UD2 - Kotlin, el lenguaje nativo de Android](./UD2/readme.md)
 - [UD3 - Estructura básica de una App en Android](./UD3/readme.md)
 - UD4 - Desarrollo Avanzado de Apps en Android
+    - [Tutorial sobre temas de la aplicacion](./utils/cambiartema.md)
 - UD5 - Arquitectura MVVM en aplicaciones de Android 
 - UD6 - Persistencia de Datos en Android
 - UD7 - Introducción al lenguaje Dart
@@ -21,7 +22,7 @@ Programación Multimedia y Dispositivos Móviles - 2º DAM - IES Segundo de Chom
 - [Práctica 1](./Practicas/Practica01.pdf)
 - [Práctica 2](./Practicas/Practica02.pdf)
 - [Práctica 3](./Practicas/Practica03.pdf)
-- Práctica 4
+- [Práctica 4](./Practicas/Practica04.pdf)
 - Práctica 5
 - Práctica 6
 - Práctica 7
