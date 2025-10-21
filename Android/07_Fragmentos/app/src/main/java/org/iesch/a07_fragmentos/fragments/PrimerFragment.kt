@@ -1,6 +1,7 @@
 package org.iesch.a07_fragmentos.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +9,8 @@ import android.view.ViewGroup
 import org.iesch.a07_fragmentos.R
 
 
-private const val NAME_BUNDLE = "name_bundle"
-private const val ADDRESS_BUNDLE = "address_bundle"
+const val NAME_BUNDLE = "name_bundle"
+const val ADDRESS_BUNDLE = "address_bundle"
 
 
 class PrimerFragment : Fragment() {
@@ -23,6 +24,8 @@ class PrimerFragment : Fragment() {
         arguments?.let {
             nombre = it.getString(NAME_BUNDLE)
             direccion = it.getString(ADDRESS_BUNDLE)
+
+            Log.i("nombre", nombre.orEmpty())
         }
     }
 
