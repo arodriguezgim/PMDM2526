@@ -3,5 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="bg_home_fragment">#ADE49A</color>
+    <color name="bg_profile_fragment">#E590EB</color>
+    <color name="bg_settings_fragment">#F0A7A1</color>
+    <color name="bg_bottom_menu">#4197E5</color>
     <color name="menu_amarillo">#ECD42D</color>
 </resources>
