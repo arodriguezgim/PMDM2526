@@ -8,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import org.iesch.a03_menu_principal.apirazas.RazasApiActivity
 import org.iesch.a03_menu_principal.databinding.ActivityMenuBinding
+import org.iesch.a03_menu_principal.fragments.FragmentsActivity
 
 class MenuActivity : AppCompatActivity() {
 
@@ -26,6 +27,14 @@ class MenuActivity : AppCompatActivity() {
         binding.btnRazas.setOnClickListener {
             irARazasActivity()
         }
+        binding.btnFragments.setOnClickListener {
+            irAMenuFragments()
+        }
+    }
+
+    private fun irAMenuFragments() {
+        val irAFragments = Intent(this, FragmentsActivity::class.java)
+        startActivity(irAFragments)
     }
 }
 
