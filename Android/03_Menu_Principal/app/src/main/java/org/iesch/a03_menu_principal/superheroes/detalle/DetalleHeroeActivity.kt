@@ -1,5 +1,6 @@
 package org.iesch.a03_menu_principal.superheroes.detalle
 
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -8,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import org.iesch.a03_menu_principal.R
 import org.iesch.a03_menu_principal.databinding.ActivityDetalleHeroeBinding
+import org.iesch.a03_menu_principal.superheroes.RegistroSuperHeroeActivity
 import org.iesch.a03_menu_principal.superheroes.model.SuperHeroe
 
 
@@ -55,6 +57,12 @@ class DetalleHeroeActivity : AppCompatActivity() {
 
         if ( bitmap != null ){
             binding.imageView.setImageBitmap(bitmap)
+        }
+
+        binding.btnVolverRegistro.setOnClickListener {
+            val intent = Intent(this, RegistroSuperHeroeActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }

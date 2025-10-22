@@ -101,5 +101,6 @@ class RegistroSuperHeroeActivity : AppCompatActivity() {
         // 7 . Pasamos solamente el picturePath
         intent.putExtra(DetalleHeroeActivity.FOTO_KEY, picturePath)
         startActivity(intent)
+        finish()
     }
 }
