@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import org.iesch.a03_menu_principal.apirazas.RazasApiActivity
+import org.iesch.a03_menu_principal.cine.ListaPeliculasActivity
 import org.iesch.a03_menu_principal.databinding.ActivityMenuBinding
 import org.iesch.a03_menu_principal.edadcanina.EdadCaninaActivity
 import org.iesch.a03_menu_principal.fragments.FragmentsActivity
@@ -42,7 +43,15 @@ class MenuActivity : AppCompatActivity() {
         binding.btnSettings.setOnClickListener {
             irASettings()
         }
+        binding.btnCine.setOnClickListener {
+            irAPeliculas()
+        }
 
+    }
+
+    private fun irAPeliculas() {
+        val intent = Intent(this, ListaPeliculasActivity::class.java)
+        startActivity(intent)
     }
 
     private fun irASettings() {
