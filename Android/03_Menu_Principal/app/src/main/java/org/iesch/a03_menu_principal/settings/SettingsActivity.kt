@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.datastore.core.DataStore
@@ -16,6 +19,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import org.iesch.a03_menu_principal.R
@@ -37,6 +41,9 @@ class SettingsActivity : AppCompatActivity() {
         const val KEY_VIBRATION = "vibration_enabled"
     }
     private lateinit var binding: ActivitySettingsBinding
+    // 8
+    private var firstTime: Boolean = true
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -50,11 +57,18 @@ class SettingsActivity : AppCompatActivity() {
         // 6 Llamo a la funcion para obtener los datos guardados
         // Vamos a consumir ese Flow
         CoroutineScope(Dispatchers.IO).launch {
-            getSettigs().collect { datosAlmacenados ->
-                binding.swDarkmode.isChecked = datosAlmacenados?.darkMode ?: false
+            getSettigs().filter { firstTime }.collect { datosAlmacenados ->
+                // 7 Actualizar la UI en el hilo principal. NO se puede tocar la interfaz desde un hilo secundario
+                CoroutineScope(Dispatchers.Main).launch {
+                    binding.swDarkmode.isChecked = datosAlmacenados?.darkMode ?: false
+                    binding.swBluetooth.isChecked = datosAlmacenados?.bluetoothEnabled ?: false
+                    binding.swVibracion.isChecked = datosAlmacenados?.vibrationEnabled ?: true
+                    binding.rsVolumen.setValues( datosAlmacenados?.volumen?.toFloat() )
+                    firstTime =! firstTime
+                }
+
             }
         }
-
 
         initUI()
     }
@@ -70,6 +84,12 @@ class SettingsActivity : AppCompatActivity() {
         // 3 Creamos el resto de funciones y variables de KEY
         binding.swDarkmode.setOnCheckedChangeListener { // El primer parámetro es el boton
             _ , value ->
+            // 10
+            if ( value ){
+                enableDarkMode()
+            } else {
+                disableDarkMode()
+            }
             CoroutineScope(Dispatchers.IO).launch {
                 saveOptions(KEY_DARKMODE, value )
             }
@@ -99,7 +119,7 @@ class SettingsActivity : AppCompatActivity() {
     // 2 Funcion para guardar los checks, le paso el key y el valor
     private suspend fun saveOptions ( key: String,  value: Boolean ){
         dataStore.edit { preferences ->
-            preferences[booleanPreferencesKey(key)]
+            preferences[booleanPreferencesKey(key)] = value
         }
     }
     // 4 Necesito una única funcion que me va a devolver todos los valores
@@ -117,5 +137,15 @@ class SettingsActivity : AppCompatActivity() {
             // datastore solo permite devolver un unico valor.
             // Entonces lo que haremos será crear un objeto que envuelva todos los valores que necesitamos
         }
+    }
+    // 9 - Me creo las funciones para cambiar el modo a oscuro o claro
+    private fun enableDarkMode(){
+        AppCompatDelegate.setDefaultNightMode( MODE_NIGHT_YES )
+        delegate.applyDayNight()
+    }
+
+    private fun disableDarkMode(){
+        AppCompatDelegate.setDefaultNightMode( MODE_NIGHT_NO )
+        delegate.applyDayNight()
     }
 }
