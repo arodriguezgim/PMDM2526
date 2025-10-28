@@ -9,25 +9,32 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import org.iesch.a03_menu_principal.R
 import org.iesch.a03_menu_principal.databinding.ActivitySettingsBinding
+import org.iesch.a03_menu_principal.settings.model.SettingsData
 
-// 1 - Me creo una función de extensión.
-// Nos premiten a través de un componente crear métodos o propiedades adicionales sin necesidad de heredar de la clase original.
-// Esta funcion de extensión hereda del Context
+
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
-// Este delegado nos permite crear unaúnica instancia de la Base de Datos
-// name es el nombre de la base de datos
+
 
 
 class SettingsActivity : AppCompatActivity() {
 
-    //3
     companion object {
         const val VOLUME_LEVEL = "volume_level"
+        //3b
+        const val KEY_DARKMODE = "darkmode_enabled"
+        const val KEY_BLUETOOTH = "bluetooth_enabled"
+        const val KEY_VIBRATION = "vibration_enabled"
     }
     private lateinit var binding: ActivitySettingsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,22 +47,75 @@ class SettingsActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        // 6 Llamo a la funcion para obtener los datos guardados
+        // Vamos a consumir ese Flow
+        CoroutineScope(Dispatchers.IO).launch {
+            getSettigs().collect { datosAlmacenados ->
+                binding.swDarkmode.isChecked = datosAlmacenados?.darkMode ?: false
+            }
+        }
+
 
         initUI()
     }
 
     private fun initUI() {
         binding.rsVolumen.addOnChangeListener { _, value, _ ->
-            Log.i("alberto", "Guardando valñor de volumen: $value")
+            // 1 - Llamamos a guardar volumen desde una corrutina
+            CoroutineScope(Dispatchers.IO).launch {
+                saveVolume(value.toInt())
+            }
+            // Con esto almacenamos el valor
+        }
+        // 3 Creamos el resto de funciones y variables de KEY
+        binding.swDarkmode.setOnCheckedChangeListener { // El primer parámetro es el boton
+            _ , value ->
+            CoroutineScope(Dispatchers.IO).launch {
+                saveOptions(KEY_DARKMODE, value )
+            }
+        }
+        binding.swBluetooth.setOnCheckedChangeListener { // El primer parámetro es el boton
+                _ , value ->
+            CoroutineScope(Dispatchers.IO).launch {
+                saveOptions(KEY_BLUETOOTH, value )
+            }
+        }
+        binding.swVibracion.setOnCheckedChangeListener { // El primer parámetro es el boton
+                _ , value ->
+            CoroutineScope(Dispatchers.IO).launch {
+                saveOptions(KEY_VIBRATION, value )
+            }
         }
     }
 
-    // 2
+
     private suspend fun saveVolume( value: Int ) {
         // Aquí irá el código para guardar datos en el DataStore
         // No puede ser llamado desde fuera de una corrutina
-        dataStore.edit {
-            it[intPreferencesKey(VOLUME_LEVEL)] = value
+        dataStore.edit { preferences ->
+            preferences[intPreferencesKey(VOLUME_LEVEL)] = value
+        }
+    }
+    // 2 Funcion para guardar los checks, le paso el key y el valor
+    private suspend fun saveOptions ( key: String,  value: Boolean ){
+        dataStore.edit { preferences ->
+            preferences[booleanPreferencesKey(key)]
+        }
+    }
+    // 4 Necesito una única funcion que me va a devolver todos los valores
+    private fun getSettigs(): Flow<SettingsData?> {
+        return dataStore.data.map { preferences ->
+
+            SettingsData(
+                 preferences[intPreferencesKey(VOLUME_LEVEL)] ?: 50,
+                preferences[booleanPreferencesKey(KEY_DARKMODE)] ?: false,
+                preferences[booleanPreferencesKey(KEY_BLUETOOTH)] ?: false,
+                preferences[booleanPreferencesKey(KEY_VIBRATION)] ?: false
+            )
+
+            // preferences[booleanPreferencesKey(KEY_DARKMODE)]
+            // datastore solo permite devolver un unico valor.
+            // Entonces lo que haremos será crear un objeto que envuelva todos los valores que necesitamos
         }
     }
 }
