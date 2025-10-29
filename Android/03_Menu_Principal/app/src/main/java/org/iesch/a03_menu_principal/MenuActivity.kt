@@ -12,6 +12,7 @@ import org.iesch.a03_menu_principal.cine.ListaPeliculasActivity
 import org.iesch.a03_menu_principal.databinding.ActivityMenuBinding
 import org.iesch.a03_menu_principal.edadcanina.EdadCaninaActivity
 import org.iesch.a03_menu_principal.fragments.FragmentsActivity
+import org.iesch.a03_menu_principal.mapas.MapasActivity
 import org.iesch.a03_menu_principal.settings.SettingsActivity
 import org.iesch.a03_menu_principal.superheroes.RegistroSuperHeroeActivity
 
@@ -49,7 +50,15 @@ class MenuActivity : AppCompatActivity() {
         binding.btnCine.setOnClickListener {
             irAPeliculas()
         }
+        binding.btnMapas.setOnClickListener {
+            irAMapas()
+        }
 
+    }
+
+    private fun irAMapas() {
+        val intent = Intent(this, MapasActivity::class.java)
+        startActivity(intent)
     }
 
     private fun irAPeliculas() {

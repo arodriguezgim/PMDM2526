@@ -4,6 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme._03_Menu_Principal">
         <activity
+            android:name=".mapas.MapasActivity"
+            android:exported="false" />
+        <activity
             android:name=".cine.ListaPeliculasActivity"
             android:exported="false" />
         <activity
@@ -21,12 +28,12 @@
             android:exported="false" />
         <activity
             android:name=".superheroes.detalle.DetalleHeroeActivity"
-            android:theme="@style/Registro_SuperHeroes"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Registro_SuperHeroes" />
         <activity
             android:name=".superheroes.RegistroSuperHeroeActivity"
-            android:theme="@style/Registro_SuperHeroes"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Registro_SuperHeroes" />
         <activity
             android:name=".edadcanina.EdadCaninaActivity"
             android:exported="false"
@@ -39,8 +46,8 @@
             android:exported="false" />
         <activity
             android:name=".MenuActivity"
-            android:theme="@style/Splash_Screen"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Splash_Screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
