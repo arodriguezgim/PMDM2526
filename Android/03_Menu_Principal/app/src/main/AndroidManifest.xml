@@ -21,9 +21,11 @@
             android:exported="false" />
         <activity
             android:name=".superheroes.detalle.DetalleHeroeActivity"
+            android:theme="@style/Registro_SuperHeroes"
             android:exported="false" />
         <activity
             android:name=".superheroes.RegistroSuperHeroeActivity"
+            android:theme="@style/Registro_SuperHeroes"
             android:exported="false" />
         <activity
             android:name=".edadcanina.EdadCaninaActivity"

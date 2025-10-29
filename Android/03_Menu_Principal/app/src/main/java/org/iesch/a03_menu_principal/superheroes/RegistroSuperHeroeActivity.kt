@@ -48,6 +48,7 @@ class RegistroSuperHeroeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        supportActionBar?.title = "Registro Super Heroe"
 
         binding.btnGuardar.setOnClickListener {
 
