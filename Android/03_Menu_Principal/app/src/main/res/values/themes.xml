@@ -7,6 +7,15 @@
 
     <style name="Theme._03_Menu_Principal" parent="Base.Theme._03_Menu_Principal" />
 
+    <!-- Splash Screen Theme -->
+    <style name="Splash_Screen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>
+        <!-- duracion de la animacion-->
+        <item name="windowSplashScreenAnimationDuration">2000</item>
+        <item name="postSplashScreenTheme">@style/Theme._03_Menu_Principal</item>
+    </style>
+
     <!-- Tema para Edad Canina -->
     <style name="Edad_Canina" parent="Theme.AppCompat.DayNight.DarkActionBar" >
 

@@ -14,6 +14,8 @@
     <color name="menu_violeta">#A279ED</color>
     <color name="menu_rojo">#F47268</color>
     <color name="my_dark_primary">#AD8202</color>
+    <!-- Color de Splash Screen -->
+    <color name="splash_background">#FBE6DD</color>
 
 
 

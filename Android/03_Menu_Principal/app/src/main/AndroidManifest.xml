@@ -39,6 +39,7 @@
             android:exported="false" />
         <activity
             android:name=".MenuActivity"
+            android:theme="@style/Splash_Screen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
