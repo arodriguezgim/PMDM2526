@@ -1,9 +1,12 @@
 package org.iesch.a03_menu_principal.mapas
 
 import android.graphics.BitmapFactory
+import android.graphics.Canvas
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.createBitmap
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.mapbox.geojson.Point
@@ -12,6 +15,7 @@ import com.mapbox.maps.MapView
 import com.mapbox.maps.Style
 import com.mapbox.maps.plugin.annotation.annotations
 import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions
+import com.mapbox.maps.plugin.annotation.generated.createPointAnnotationManager
 import org.iesch.a03_menu_principal.R
 import org.iesch.a03_menu_principal.databinding.ActivityMapasBinding
 
@@ -33,6 +37,11 @@ class MapasActivity : AppCompatActivity() {
         // Iniciamos el mapa
         mapView = binding.mapView
 
+        val iesChomon = Point.fromLngLat(-1.097681, 40.327509)
+        val iesSantaEmerenciana = Point.fromLngLat(-1.106298, 40.333217)
+        val iesFrancesAranda= Point.fromLngLat(-1.109779, 40.351472)
+        val iesVegaTuria= Point.fromLngLat(-1.1091475323669322, 40.34083221892887)
+
         // Configuramos el mapa y el estilo del mapa
         mapView.mapboxMap.apply {
             // Cargamos el estilo del mapa
@@ -40,8 +49,8 @@ class MapasActivity : AppCompatActivity() {
                 // Configuramos la ubicacion inicial del mapa
                 setCamera(
                     CameraOptions.Builder()
-                        .center(Point.fromLngLat(-1.097681, 40.327509))
-                        .zoom(16.0)
+                        .center( iesVegaTuria )
+                        .zoom(13.0)
                         .build()
                 )
 
@@ -58,12 +67,30 @@ class MapasActivity : AppCompatActivity() {
                 val annotationApi = mapView.annotations
                 val pointAnnotationManager = annotationApi.createPointAnnotationManager()
 
-                val pointAnnotationOptions = PointAnnotationOptions()
-                    .withPoint(Point.fromLngLat(-1.097681, 40.327509))
+                val markerChomon = PointAnnotationOptions()
+                    .withPoint( iesChomon )
                     .withIconImage("custom-marker")
-                    .withIconSize(1.5)
+                    .withIconSize(2.0)
+                val markerVega = PointAnnotationOptions()
+                    .withPoint( iesVegaTuria )
+                    .withIconImage("custom-marker")
+                    .withIconSize(2.0)
+                val markerFrances= PointAnnotationOptions()
+                    .withPoint( iesFrancesAranda )
+                    .withIconImage("custom-marker")
+                    .withIconSize(2.0)
+                val markerSanta = PointAnnotationOptions()
+                    .withPoint( iesSantaEmerenciana )
+                    .withIconImage("custom-marker")
+                    .withIconSize(2.0)
+                    
 
-                pointAnnotationManager.create(pointAnnotationOptions)
+
+
+                pointAnnotationManager.create(markerChomon)
+                pointAnnotationManager.create(markerFrances)
+                pointAnnotationManager.create(markerSanta)
+                pointAnnotationManager.create(markerVega)
             }
         }
     }
