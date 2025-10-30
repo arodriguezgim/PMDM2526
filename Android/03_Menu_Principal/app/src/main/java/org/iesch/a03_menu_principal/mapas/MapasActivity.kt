@@ -3,6 +3,7 @@ package org.iesch.a03_menu_principal.mapas
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -20,6 +21,8 @@ import org.iesch.a03_menu_principal.R
 import org.iesch.a03_menu_principal.databinding.ActivityMapasBinding
 
 class MapasActivity : AppCompatActivity() {
+
+    private var chomonViewAnnotation: View? = null
 
     private lateinit var binding: ActivityMapasBinding
     private lateinit var mapView: MapView
@@ -83,7 +86,7 @@ class MapasActivity : AppCompatActivity() {
                     .withPoint( iesSantaEmerenciana )
                     .withIconImage("custom-marker")
                     .withIconSize(2.0)
-                    
+
 
 
 
@@ -91,6 +94,8 @@ class MapasActivity : AppCompatActivity() {
                 pointAnnotationManager.create(markerFrances)
                 pointAnnotationManager.create(markerSanta)
                 pointAnnotationManager.create(markerVega)
+
+
             }
         }
     }
