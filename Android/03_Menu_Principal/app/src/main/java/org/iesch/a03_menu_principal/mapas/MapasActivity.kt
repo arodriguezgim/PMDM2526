@@ -32,8 +32,7 @@ class MapasActivity : AppCompatActivity() {
         }
         // Iniciamos el mapa
         mapView = binding.mapView
-        // Necesitamos el Token
-        val mapboxToken = getString(R.string.mapbox_access_token)
+
         // Configuramos el mapa y el estilo del mapa
         mapView.mapboxMap.apply {
             // Cargamos el estilo del mapa
@@ -45,29 +44,27 @@ class MapasActivity : AppCompatActivity() {
                         .zoom(16.0)
                         .build()
                 )
-                style.addImage()
-                val bitmap = BitmapFactory.decodeResource(resources, R.drawable.marker_red)
+
+                // Cargar y añadir la imagen del marcador al estilo
+                val drawable = ContextCompat.getDrawable(this@MapasActivity, R.drawable.marker_red)
+                val bitmap = createBitmap(drawable!!.intrinsicWidth, drawable.intrinsicHeight)
+                val canvas = Canvas(bitmap)
+                drawable.setBounds(0, 0, canvas.width, canvas.height)
+                drawable.draw(canvas)
+
+                style.addImage("custom-marker", bitmap)
+
+                // Crear el marcador después de que el estilo esté cargado
                 val annotationApi = mapView.annotations
-                val pointAnnotationManager = annotationApi.createAnnotationManager()
+                val pointAnnotationManager = annotationApi.createPointAnnotationManager()
+
+                val pointAnnotationOptions = PointAnnotationOptions()
+                    .withPoint(Point.fromLngLat(-1.097681, 40.327509))
+                    .withIconImage("custom-marker")
+                    .withIconSize(1.5)
+
+                pointAnnotationManager.create(pointAnnotationOptions)
             }
         }
-
-        // Pongo un marker
-        addMarker()
-    }
-
-    private fun addMarker() {
-        val annotationApi = mapView.annotations
-        val pointAnnotationManager = annotationApi.createAnnotationManager()
-        // Cargar imagen desde recursos
-        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.marker_red)
-        style.add
-
-        val pointAnnotationOptions = PointAnnotationOptions()
-            .withPoint(Point.fromLngLat(-1.097681, 40.327509))
-            .withIconImage("custom-marker")
-            .withIconSize(1.5) // Tamaño del icono
-
-        pointAnnotationManager.create(pointAnnotationOptions)
     }
 }
