@@ -50,6 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="@color/amarillo_firebase"
                 android:text="Registrar"/>
             <Space
                 android:layout_width="8dp"
@@ -60,6 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="@color/naranja_firebase"
                 android:text="Login"/>
 
         </LinearLayout>
@@ -70,7 +72,7 @@
             android:id="@+id/loginGoogleButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/azul_firebase"
             android:paddingStart="16dp"
             android:text="Login con Google"
             android:textColor="@color/black"/>
