@@ -1,5 +1,6 @@
 package org.iesch.a03_menu_principal
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -25,5 +26,16 @@ class LoginActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        binding.tvRegister.setOnClickListener {
+            irARegistro()
+        }
+    }
+
+    private fun irARegistro() {
+
+        val intent = Intent(this, RegisterActivity::class.java)
+        startActivity(intent)
+        //finish()
     }
 }

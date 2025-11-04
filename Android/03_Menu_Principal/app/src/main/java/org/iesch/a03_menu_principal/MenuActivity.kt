@@ -15,6 +15,7 @@ import org.iesch.a03_menu_principal.fragments.FragmentsActivity
 import org.iesch.a03_menu_principal.mapas.MapasActivity
 import org.iesch.a03_menu_principal.settings.SettingsActivity
 import org.iesch.a03_menu_principal.superheroes.RegistroSuperHeroeActivity
+import kotlin.or
 
 class MenuActivity : AppCompatActivity() {
 
@@ -51,7 +52,20 @@ class MenuActivity : AppCompatActivity() {
         binding.btnMapas.setOnClickListener {
             irAMapas()
         }
+        binding.btnLogout.setOnClickListener{
+            irALogin()
+        }
 
+
+    }
+
+    private fun irALogin() {
+        val intent = Intent(this, LoginActivity::class.java).apply {
+            // con este flag evitamos que el usuario pueda volver atras al menu despues de hacer logout
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        startActivity(intent)
+        finish()
     }
 
     private fun irAMapas() {
