@@ -48,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
                     .addOnCompleteListener { logueo ->
                         if ( logueo.isSuccessful ){
                             // El usuario se ha logueado correctamente
-                            mostrarHomeActivity()
+                            mostrarHomeActivity( usuario, ProviderType.EMAILYCONTRASENA.toString() )
                         } else {
                             // Ha habido un error
                             mostrarError()
@@ -117,12 +117,14 @@ class LoginActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun mostrarHomeActivity() {
+    private fun mostrarHomeActivity( usuario: String, provider: String ) {
         val intent = Intent(this, HomeActivity::class.java)
+        intent.putExtra("usuario", usuario)
+        intent.putExtra("provider", provider)
         startActivity( intent )
-        finish()
+
     }
-/*
+
     override fun onStart() {
         super.onStart()
         // Compruebo si el usuario ya ha accedido
@@ -130,10 +132,13 @@ class LoginActivity : AppCompatActivity() {
         if (usuarioActual != null) {
             // Si el usuario actial es diferente de null, estará logueado
             val intent = Intent( this, HomeActivity::class.java)
+            val nombre = usuarioActual.let {
+                it.email
+            }
+            intent.putExtra("usuario", nombre)
             startActivity( intent )
-            finish()
         }
-    }*/
+    }
 
     private fun iniciarAnalytics() {
         firebaseAnalytics = Firebase.analytics
