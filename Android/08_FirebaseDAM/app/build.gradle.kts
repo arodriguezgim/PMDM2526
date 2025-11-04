@@ -45,6 +45,8 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:34.5.0"))
     // Firebase Analytics
     implementation("com.google.firebase:firebase-analytics")
+    // Firebase Auth con Email y contraseñaç
+    implementation("com.google.firebase:firebase-auth")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
