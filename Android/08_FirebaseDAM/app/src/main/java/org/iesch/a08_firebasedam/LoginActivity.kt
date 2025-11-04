@@ -61,6 +61,40 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        binding.registerButton.setOnClickListener {
+            // Comprobamos si hemos introducido email y contraseña
+            if ( binding.emailEditText.text.isNotEmpty() && binding.passwordEditText.text.isNotEmpty() ){
+                // Nos autenticamos con email y contraseña
+                val usuario = binding.emailEditText.text.toString()
+                val password = binding.passwordEditText.text.toString()
+                auth.createUserWithEmailAndPassword( usuario, password )
+                    // Añadimos un listener para comprobar si el usuario se ha registrado correctamente o no
+                    .addOnCompleteListener { registro ->
+                        if ( registro.isSuccessful ){
+                            // El usuario se ha registrado correctamente
+                            mostrarRegistroCorrecto()
+                        } else {
+                            // Ha habido un error
+                            mostrarError()
+                        }
+                    }
+
+            } else {
+                // Avisamos al usuario que ha de rellenar los campos
+                avisoUsuario()
+            }
+        }
+
+    }
+
+    private fun mostrarRegistroCorrecto() {
+        // Mostramos el error mediante un AlertDialog
+        val builder = AlertDialog.Builder( this )
+        builder.setTitle("Usuario Registrado")
+        builder.setMessage("El usuario se ha registrado correctamente")
+        builder.setPositiveButton("Aceptar", null)
+        val dialog = builder.create()
+        dialog.show()
     }
 
     private fun avisoUsuario() {
@@ -77,7 +111,7 @@ class LoginActivity : AppCompatActivity() {
         // Mostramos el error mediante un AlertDialog
         val builder = AlertDialog.Builder( this )
         builder.setTitle("Error de autenticación")
-        builder.setMessage("No se ha posiso iniciar sesión. Revisa tu email y password e inténtalo de nuevo.")
+        builder.setMessage("No se ha podido iniciar sesión. Revisa tu email y password e inténtalo de nuevo.")
         builder.setPositiveButton("Aceptar", null)
         val dialog = builder.create()
         dialog.show()
