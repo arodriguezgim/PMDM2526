@@ -9,6 +9,12 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
         Log.d("FCM", "Mensaje recibido: ${message.from}")
+
+        // Mostrar la notificacion
+        message.notification?.let {
+            Log.d("FCM", "Título: ${it.title}")
+            Log.d("FCM", "Cuerpo: ${it.body}")
+        }
     }
 
 }

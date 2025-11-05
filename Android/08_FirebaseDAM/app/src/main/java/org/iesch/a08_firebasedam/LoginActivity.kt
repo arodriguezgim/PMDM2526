@@ -68,6 +68,16 @@ class LoginActivity : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = Firebase.auth
 
+        // Me puedo suscribir por temas
+        Firebase.messaging.subscribeToTopic("RealMadrid")
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful ){
+                    Log.d("FCM", "Suscrito a Real MAdrid")
+                } else {
+                    Log.d("FCM", "Error en la suscripcion a Real MAdrid")
+                }
+            }
+
         // Configuramos los listeners de los botones
         binding.loginButton.setOnClickListener {
             // Comprobamos si hemos introducido email y contraseña
