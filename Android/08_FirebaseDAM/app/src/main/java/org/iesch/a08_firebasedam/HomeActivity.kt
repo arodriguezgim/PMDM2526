@@ -11,7 +11,8 @@ import org.iesch.a08_firebasedam.databinding.ActivityHomeBinding
 
 
 enum class ProviderType{
-    EMAILYCONTRASENA
+    EMAILYCONTRASENA,
+    GOOGLE
 }
 class HomeActivity : AppCompatActivity() {
 

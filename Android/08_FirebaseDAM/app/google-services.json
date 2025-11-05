@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "278810743705-t5s87o4c2tstro4f7fnefhn7h115j7el.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.iesch.a08_firebasedam",
+            "certificate_hash": "3614a81217e52e1aad580c19734b8be432ec209c"
+          }
+        },
+        {
           "client_id": "278810743705-thk76bp0hil79tutea59ie7ilf4ii27d.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

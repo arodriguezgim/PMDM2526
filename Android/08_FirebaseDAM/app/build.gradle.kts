@@ -45,8 +45,12 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:34.5.0"))
     // Firebase Analytics
     implementation("com.google.firebase:firebase-analytics")
-    // Firebase Auth con Email y contraseñaç
+    // Firebase Auth con Email y contraseña
     implementation("com.google.firebase:firebase-auth")
+    // Firebase Auth con Google
+    implementation("androidx.credentials:credentials:1.3.0")
+    implementation("androidx.credentials:credentials-play-services-auth:1.3.0")
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
