@@ -1,11 +1,16 @@
 package org.iesch.a08_firebasedam
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.credentials.Credential
@@ -22,8 +27,10 @@ import com.google.firebase.analytics.analytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
+import com.google.firebase.messaging.messaging
 import kotlinx.coroutines.launch
 import org.iesch.a08_firebasedam.databinding.ActivityLoginBinding
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -32,6 +39,16 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private lateinit var auth: FirebaseAuth
 
+    //Creamos ellauncher para solicitar los permisos
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission(),
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            Log.d("FCM", "Permiso de notificaciones concedido")
+        } else {
+            Log.d("FCM", "Permiso de notificaciones denegado")
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -43,6 +60,10 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
         iniciarAnalytics()
+        // Solicitar PErmisos de Notificaciones
+        solicitarPermisosPush()
+        // Notificaciones Push
+        notificacionesPush()
         // 2 - Iniciamosla instancia de Firebase auth
         // Initialize Firebase Auth
         auth = Firebase.auth
@@ -102,12 +123,43 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    private fun solicitarPermisosPush() {
+        // Solo necesitamos solicitar permiso en Android 13 (API 33) o superior
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            when {
+                ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) == PackageManager.PERMISSION_GRANTED -> {
+                    // El permiso ya está concedido
+                    Log.d("FCM", "Permiso de notificaciones ya concedido")
+                }
+                else -> {
+                    // Solicitar el permiso
+                    requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                }
+            }
+        }
+    }
+
+    private fun notificacionesPush() {
+        // Vamos a obtener el token de registro
+        Firebase.messaging.token.addOnCompleteListener { task ->
+            if (task.isSuccessful){
+                val token = task.result
+                Log.d("FCM", "Token de registro: $token")
+            } else {
+                Log.d("FCM", "Error al obtener el token de registro")
+            }
+        }
+    }
+
     private fun logueoConGoogle() {
         // Vamos a crearlo siguiendo la documentacion oficial
         // Instanciamos una solicitud de inicio con Google
         val googleIdOption = GetGoogleIdOption.Builder()
             .setServerClientId(getString(R.string.web_client))
-            .setFilterByAuthorizedAccounts(true)
+            .setFilterByAuthorizedAccounts(false)
             .build()
         // Generamos la solicitud de credenciales
         val request = GetCredentialRequest.Builder()
