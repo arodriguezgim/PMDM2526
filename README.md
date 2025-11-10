@@ -24,7 +24,7 @@ Programación Multimedia y Dispositivos Móviles - 2º DAM - IES Segundo de Chom
 - [Práctica 3](./Practicas/Practica03.pdf)
 - [Práctica 4](./Practicas/Practica04.pdf)
 - [Práctica 5](./Practicas/Practica05.pdf)
-- Práctica 6
+- [Práctica 6](./Practicas/Practica06.pdf)
 - Práctica 7
 - Práctica 8
 
