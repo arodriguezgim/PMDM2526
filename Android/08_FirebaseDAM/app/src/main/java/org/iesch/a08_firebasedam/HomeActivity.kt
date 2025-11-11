@@ -1,5 +1,6 @@
 package org.iesch.a08_firebasedam
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -53,6 +54,11 @@ class HomeActivity : AppCompatActivity() {
         binding.logoutButton.setOnClickListener {
             Firebase.auth.signOut()
             finish()
+        }
+
+        binding.optionalButton.setOnClickListener {
+            val intent = Intent(this, ListaTareasActivity::class.java)
+            startActivity( intent )
         }
 
         binding.guardarButton.setOnClickListener {
