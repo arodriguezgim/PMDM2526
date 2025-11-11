@@ -53,6 +53,8 @@ dependencies {
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
     // Firebase Cloud Messaging
     implementation("com.google.firebase:firebase-messaging")
+    // Firebase Remote Config
+    implementation("com.google.firebase:firebase-config")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

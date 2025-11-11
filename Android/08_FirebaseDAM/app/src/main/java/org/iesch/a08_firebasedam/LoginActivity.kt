@@ -28,6 +28,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
 import com.google.firebase.messaging.messaging
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
+import com.google.firebase.remoteconfig.remoteConfig
+import com.google.firebase.remoteconfig.remoteConfigSettings
 import kotlinx.coroutines.launch
 import org.iesch.a08_firebasedam.databinding.ActivityLoginBinding
 
@@ -62,13 +65,33 @@ class LoginActivity : AppCompatActivity() {
         auth = Firebase.auth
         // Analytics
         iniciarAnalytics()
-        // Solicitar PErmisos de Notificaciones
+        // Solicitar Permisos de Notificaciones
         solicitarPermisosPush()
         // Notificaciones Push
         notificacionesPush()
+        // Configuración Remota
+        configuracionRemota()
 
         // Iniciamos los listeners para los botones
         initUI()
+
+    }
+
+    private fun configuracionRemota() {
+        // Lo recomendable es definir un valor por defecto para todos estos valores remotos.
+        val configSettings: FirebaseRemoteConfigSettings = remoteConfigSettings {
+            minimumFetchIntervalInSeconds = 60
+        }
+        // Obtenemos la instancia de Remote Config
+        val firebaseConfig = Firebase.remoteConfig
+        // Aplicamos la configuracion a Remote Config
+        firebaseConfig.setConfigSettingsAsync( configSettings )
+        // Establecemos los valores por defecto en caso de falle la obtención de los valores remotos
+        firebaseConfig.setDefaultsAsync( mapOf(
+            "show_optional_button" to false,
+            "optional_button_text" to "Texto por defecto",
+            "color_bg" to "bg_1"
+        ))
 
     }
 
