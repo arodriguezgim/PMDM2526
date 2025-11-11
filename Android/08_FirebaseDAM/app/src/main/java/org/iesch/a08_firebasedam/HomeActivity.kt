@@ -9,7 +9,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.remoteconfig.remoteConfig
+import com.google.type.DateTime
 import org.iesch.a08_firebasedam.databinding.ActivityHomeBinding
 
 
@@ -19,6 +21,10 @@ enum class ProviderType{
 }
 class HomeActivity : AppCompatActivity() {
 
+    // 1 - Creamos una instancia de nuestra base de datos, así ya la tenemos conectada remotamente
+    private val db = FirebaseFirestore.getInstance()
+
+    lateinit var email : String
     private lateinit var binding: ActivityHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +37,14 @@ class HomeActivity : AppCompatActivity() {
             insets
         }
         //Recuperamos los valores del usuario
-        initUI()
+        // Recuperamos los valores del Bundle
+        val bundle = intent.extras
+        email = bundle?.getString("usuario").toString()
+        val provider = bundle?.getString("provider")
+
+        // Lo mostramos en los textview para ello
+        binding.emailTextView.text = email.toString()
+        binding.metodoTextView.text = provider.toString()
         // Recuperamos nuestra Configuración Remota
         configuracionRemota()
 
@@ -41,7 +54,26 @@ class HomeActivity : AppCompatActivity() {
             Firebase.auth.signOut()
             finish()
         }
+
+        binding.guardarButton.setOnClickListener {
+            // 2 - Creamos una estructura dedatos para guardar en Firestore
+            // Hemos decidido que la clave por cada usuario sea su email
+            db.collection("usuarios").document( email.toString() ).set(
+                hashMapOf(
+                    "provider" to provider,
+                    "email" to email,
+                    "direccion" to binding.addressEditText.text.toString(),
+                    "telefono" to binding.phoneEditText.text.toString(),
+
+                )
+            )
+        }
+
+        binding.recuperarButton.setOnClickListener {
+            // Recuperar los datos de Firebase
+        }
     }
+
 
     private fun configuracionRemota() {
         binding.optionalButton.visibility = View.INVISIBLE
@@ -78,13 +110,6 @@ class HomeActivity : AppCompatActivity() {
 
 
     private fun initUI() {
-        // Recuperamos los valores del Bundle
-        val bundle = intent.extras
-        val email = bundle?.getString("usuario")
-        val provider = bundle?.getString("provider")
 
-        // Lo mostramos en los textview para ello
-        binding.emailTextView.text = email.toString()
-        binding.metodoTextView.text = provider.toString()
     }
 }
