@@ -71,6 +71,19 @@ class HomeActivity : AppCompatActivity() {
 
         binding.recuperarButton.setOnClickListener {
             // Recuperar los datos de Firebase
+            db.collection("usuarios").document( email.toString() ).get().addOnCompleteListener  { document ->
+
+                if (document != null) {
+                    binding.addressEditText.setText( document.result.getString("direccion") )
+                    binding.phoneEditText.setText( document.result.getString("telefono") )
+                    binding.metodoTextView.setText( document.result.getString("provider"))
+                }
+            }
+        }
+
+        binding.eliminarButton.setOnClickListener {
+            // Eliminamos los datos de la coleccion
+            db.collection("usuarios").document( email.toString() ).delete()
         }
     }
 
