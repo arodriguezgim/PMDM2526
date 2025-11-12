@@ -14,12 +14,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginVertical="16dp"
             android:padding="8dp">
-            <TextView
-                android:id="@+id/tvTitulo"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Título de la tarea"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:id="@+id/tvTitulo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Título de la tarea"/>
+                <Switch
+                    android:id="@+id/swCompletada"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Completada"
+                    android:checked="false"/>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tvDescripcion"
@@ -33,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@android:color/transparent"
                 android:src="@drawable/icon_delete"
+                android:padding="8dp"
                 />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

@@ -7,17 +7,19 @@ import org.iesch.a08_firebasedam.databinding.ActivityListaTareasBinding
 import org.iesch.a08_firebasedam.databinding.ItemTareaBinding
 import org.iesch.a08_firebasedam.model.Tarea
 
-// 7 - Creamos el Adaptador
+
 class TareaAdapter(
-    private var listaTareas: MutableList<Tarea>
+    private var listaTareas: MutableList<Tarea>,
+    private val onBorrar: ((Tarea) -> Unit )? = null,
+    private val onToogleCompletada: ((Tarea) -> Unit )? = null,
 ) : RecyclerView.Adapter<TareaViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): TareaViewHolder {
-        // 4 Inflo el layout del Item
+
         val binding = ItemTareaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        // 5 Devolvemos el ViewHolder
+
         return TareaViewHolder( binding )
     }
 
@@ -25,12 +27,12 @@ class TareaAdapter(
         holder: TareaViewHolder,
         position: Int
     ) {
-        // 3 - Llamo al bind del ViewHolder
-        holder.bind( listaTareas[position])
+
+        holder.bind( listaTareas[position], onBorrar, onToogleCompletada )
     }
 
     override fun getItemCount(): Int {
-        // 2
+
         return listaTareas.size
     }
 
@@ -43,8 +45,15 @@ class TareaAdapter(
 // 1 - Me creo el ViewHolder
 class TareaViewHolder( private  val binding: ItemTareaBinding ) : RecyclerView.ViewHolder(binding.root){
 
-    fun bind( tarea: Tarea ){
+    fun bind(
+        tarea: Tarea,
+        onBorrar: ((Tarea) -> Unit)? = null,
+        onToogleCompletada: ((Tarea) -> Unit)? = null
+    ){
         binding.tvTitulo.text = tarea.titulo
         binding.tvDescripcion.text = tarea.descripcion
+        // Pongo a true o false el check que he añadido en base a lo que valga
+        binding.swCompletada.setOnCheckedChangeListener(null)
+        binding.swCompletada.isChecked = tarea.completada
     }
 }
