@@ -59,6 +59,13 @@ class TareaViewHolder( private  val binding: ItemTareaBinding ) : RecyclerView.V
 
         aplicarEstiloCompletada( tarea.completada )
 
+        binding.swCompletada.setOnCheckedChangeListener { _, isChecked ->
+            // Actualizamos el valor del objeto
+            tarea.completada = isChecked
+            aplicarEstiloCompletada( isChecked )
+            onToogleCompletada?.invoke( tarea )
+        }
+
         binding.imgBtnBorrar.setOnClickListener {
             onBorrar?.invoke( tarea )
         }
@@ -66,9 +73,9 @@ class TareaViewHolder( private  val binding: ItemTareaBinding ) : RecyclerView.V
 
     private fun aplicarEstiloCompletada( completada: Boolean) {
         if ( completada ) {
-            binding.root.setBackgroundColor(Color.parseColor("#FFCDD2"))
+            binding.card.setBackgroundColor(Color.parseColor("#B9F1BB"))
         } else {
-            binding.root.setBackgroundColor(Color.parseColor("#F0BFBB"))
+            binding.card.setBackgroundColor(Color.parseColor("#F0BFBB"))
         }
     }
 }

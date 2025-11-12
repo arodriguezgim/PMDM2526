@@ -47,6 +47,9 @@ class ListaTareasActivity : AppCompatActivity() {
     }
 
     private fun agregarTarea() {
+
+        mostrarLoading( true )
+
         val titulo = binding.etTitulo.text.toString().trim()
         val descripcion = binding.etDescripcion.text.toString().trim()
         if ( titulo.isEmpty() || descripcion.isEmpty() )  {
@@ -73,10 +76,15 @@ class ListaTareasActivity : AppCompatActivity() {
                     Toast.makeText(this, "Error al añadir la tarea", Toast.LENGTH_LONG).show()
                 }
 
+            mostrarLoading( false )
+
         }
     }
 
     private fun cargarTareas() {
+        // mostrar el Loading
+        mostrarLoading( true )
+
         db.collection("tareas")
             .addSnapshotListener { snapshot, error ->
                 if ( error != null ) {
@@ -96,6 +104,8 @@ class ListaTareasActivity : AppCompatActivity() {
 
                 tareaAdapter.actualizarLista( listaTareas )
 
+                mostrarLoading( false )
+
             }
 
     }
@@ -107,7 +117,9 @@ class ListaTareasActivity : AppCompatActivity() {
                 // Borramos de Firebase
                 borraTarea( tarea )
             },
-            onToogleCompletada = null
+            onToogleCompletada = { tarea ->
+                actualizarTarea( tarea )
+            }
         )
         // 9 - Asignamos el adaptador a nuestro RecyclerView
         binding.rvTareas.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
@@ -121,5 +133,24 @@ class ListaTareasActivity : AppCompatActivity() {
             .addOnSuccessListener {
                 Toast.makeText(this, "Tarea eliminada", Toast.LENGTH_LONG).show()
             }
+    }
+
+    private fun actualizarTarea( tarea: Tarea ){
+        mostrarLoading( true )
+        db.collection("tareas")
+            .document( tarea.id )
+            .update("completada", tarea.completada )
+            .addOnCompleteListener {
+                Toast.makeText(this, "Tarea modificada correctamente", Toast.LENGTH_LONG).show()
+            }
+        mostrarLoading( false )
+    }
+
+    private fun mostrarLoading ( mostrar: Boolean ){
+        binding.progressBar.visibility = if (mostrar) {
+            android.view.View.VISIBLE
+        } else {
+            android.view.View.GONE
+        }
     }
 }
