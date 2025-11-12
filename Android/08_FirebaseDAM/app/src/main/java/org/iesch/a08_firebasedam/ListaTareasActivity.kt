@@ -101,9 +101,25 @@ class ListaTareasActivity : AppCompatActivity() {
     }
 
     private fun configurarRecyclerView() {
-        tareaAdapter = TareaAdapter( listaTareas )
+        tareaAdapter = TareaAdapter(
+            listaTareas,
+            onBorrar = { tarea ->
+                // Borramos de Firebase
+                borraTarea( tarea )
+            },
+            onToogleCompletada = null
+        )
         // 9 - Asignamos el adaptador a nuestro RecyclerView
         binding.rvTareas.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         binding.rvTareas.adapter = tareaAdapter
+    }
+
+    private fun borraTarea( tarea: Tarea ){
+        db.collection("tareas")
+            .document( tarea.id )
+            .delete()
+            .addOnSuccessListener {
+                Toast.makeText(this, "Tarea eliminada", Toast.LENGTH_LONG).show()
+            }
     }
 }

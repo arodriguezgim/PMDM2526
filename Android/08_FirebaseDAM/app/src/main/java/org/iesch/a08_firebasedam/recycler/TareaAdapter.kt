@@ -1,5 +1,6 @@
 package org.iesch.a08_firebasedam.recycler
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -55,5 +56,19 @@ class TareaViewHolder( private  val binding: ItemTareaBinding ) : RecyclerView.V
         // Pongo a true o false el check que he añadido en base a lo que valga
         binding.swCompletada.setOnCheckedChangeListener(null)
         binding.swCompletada.isChecked = tarea.completada
+
+        aplicarEstiloCompletada( tarea.completada )
+
+        binding.imgBtnBorrar.setOnClickListener {
+            onBorrar?.invoke( tarea )
+        }
+    }
+
+    private fun aplicarEstiloCompletada( completada: Boolean) {
+        if ( completada ) {
+            binding.root.setBackgroundColor(Color.parseColor("#FFCDD2"))
+        } else {
+            binding.root.setBackgroundColor(Color.parseColor("#F0BFBB"))
+        }
     }
 }
