@@ -40,12 +40,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:text="Añadir tarea"/>
-        <Button
+        <!--<Button
             android:id="@+id/btnActualizar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="Actualizar tarea"/>
+            android:text="Actualizar tarea"/>-->
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
