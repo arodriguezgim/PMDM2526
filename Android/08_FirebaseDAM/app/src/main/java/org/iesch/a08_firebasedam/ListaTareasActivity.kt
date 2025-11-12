@@ -78,25 +78,32 @@ class ListaTareasActivity : AppCompatActivity() {
 
     private fun cargarTareas() {
         db.collection("tareas")
-            .get()
-            .addOnCompleteListener { items ->
-                listaTareas.clear()
-                for ( document in items.result  ){
-                    val tarea = document.toObject(Tarea::class.java)
-                    listaTareas.add( tarea )
+            .addSnapshotListener { snapshot, error ->
+                if ( error != null ) {
+                    Toast.makeText(this, "Error al cargar las tareas", Toast.LENGTH_LONG).show()
+                    return@addSnapshotListener
                 }
-                // 11 - Notificamos al Adaptador que los datos han cambiado
+                listaTareas.clear()
+                snapshot?.documents?.forEach { document ->
+                    val tarea = Tarea(
+                        id = document.id,
+                        titulo = document.getString("titulo") ?: "",
+                        descripcion = document.getString("descripcion") ?: "",
+                        completada = document.getBoolean("completada") ?: false
+                    )
+                    listaTareas.add(tarea)
+                }
+
                 tareaAdapter.actualizarLista( listaTareas )
 
             }
-            .addOnFailureListener {
-                Toast.makeText(this, "Error al cargar las tareas", Toast.LENGTH_LONG).show()
-            }
+
     }
 
     private fun configurarRecyclerView() {
         tareaAdapter = TareaAdapter( listaTareas )
         // 9 - Asignamos el adaptador a nuestro RecyclerView
+        binding.rvTareas.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         binding.rvTareas.adapter = tareaAdapter
     }
 }
