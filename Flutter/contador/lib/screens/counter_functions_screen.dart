@@ -77,7 +77,10 @@ class BotonPersonalizado extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      //backgroundColor: Colors.yellow,
+      shape: StadiumBorder(),
+      enableFeedback: true,
+      elevation: 10,
+      backgroundColor: Colors.lightBlueAccent,
       child: Icon( icono ),
         onPressed: onPressed
       );
