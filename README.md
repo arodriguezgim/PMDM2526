@@ -34,7 +34,7 @@ Programación Multimedia y Dispositivos Móviles - 2º DAM - IES Segundo de Chom
 - UD11 - Historia e introducción a los motores de videojuegos: Unity
 - UD12 - Desarrollo de videojuegos 2D y 3D
 
-### Prácticas 1ª Evaluación
+### Prácticas 2ª Evaluación
 
 - [Práctica 7](./Practicas/Practica07.pdf)
 - Práctica 8
