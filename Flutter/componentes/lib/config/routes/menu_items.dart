@@ -39,4 +39,11 @@ final menuItems = <MenuItem>[
     link: '/tarjetas', 
     icono: Icons.credit_card,
   ),
+
+  MenuItem(
+    titulo: 'Alertas', 
+    subtitulo: 'Un simple ejemplo de alertas en Flutter', 
+    link: '/alertas', 
+    icono: Icons.alarm_add_outlined,
+  ),
 ];
