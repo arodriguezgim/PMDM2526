@@ -16,12 +16,15 @@ class AppTheme {
   AppTheme({this.colorSeleccionado = 0 });
 
   ThemeData obtenerTema() => ThemeData(
-    useMaterial3: false,
+    useMaterial3: true,
     colorSchemeSeed: listaDeColores[colorSeleccionado],
 
     appBarTheme: AppBarTheme(
       centerTitle: true,
-    )
+    ),
+
+    iconTheme: IconThemeData(color: listaDeColores[colorSeleccionado]),
+
   );
 
 }

@@ -24,9 +24,12 @@ class _BotonesScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       child: Padding(
         padding: EdgeInsetsGeometry.symmetric(vertical: 5, horizontal: 10),
-        child: Column(
+        child: Wrap(
+          spacing: 14,
+          alignment: WrapAlignment.center,
           children: [
             ElevatedButton(
               onPressed: () {  }, 
@@ -37,6 +40,31 @@ class _BotonesScreenView extends StatelessWidget {
               label: Text('ElevatedButton Icon'),
               icon: Icon( Icons.access_alarm_outlined),
               ),
+            FilledButton(
+              onPressed: (){}, 
+              child: Text('Filled Button')
+              ),
+            FilledButton.icon(
+              iconAlignment: IconAlignment.end,
+              onPressed: (){}, 
+              label: Text('Filled Button'),
+              icon: Icon( Icons.access_alarm),
+              ),
+            OutlinedButton(
+            
+              onPressed: (){}, 
+              child: Text('Outlined Button')
+              ),
+            TextButton(
+              onPressed: (){}, 
+              child: Text('Text Button'),
+              ),
+            IconButton(
+              onPressed: (){}, 
+              icon: Icon( Icons.account_balance_wallet_sharp,),
+              color: Colors.amber,
+              iconSize: 50,
+              )
           ],
         ),
       ),
