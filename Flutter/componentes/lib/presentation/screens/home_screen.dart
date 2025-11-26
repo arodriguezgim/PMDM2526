@@ -1,5 +1,4 @@
 import 'package:componentes/config/routes/menu_items.dart';
-import 'package:componentes/presentation/screens/botones_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -15,18 +14,24 @@ class HomeScreen extends StatelessWidget {
         itemCount: menuItems.length,
         itemBuilder: (context, index) {
           final menuItem = menuItems[index];
+          final colors = Theme.of(context).colorScheme;
+
+
           return ListTile(
             title: Text( menuItem.titulo ),
             subtitle: Text( menuItem.subtitulo ),
-            leading: Icon( menuItem.icono ),
-            trailing: Icon( Icons.arrow_forward_ios),
+            leading: Icon( menuItem.icono, color: colors.primary, ),
+            trailing: Icon( Icons.arrow_forward_ios, color: colors.primary,),
             onTap: () {
               // Navegar a otra pantalla
+              /*
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => BotonesScreen(),
                   )
               );
+              */
+              Navigator.pushNamed(context, menuItem.link);
             },
             
           );
