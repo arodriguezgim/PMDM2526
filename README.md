@@ -25,8 +25,7 @@ Programación Multimedia y Dispositivos Móviles - 2º DAM - IES Segundo de Chom
 - [Práctica 4](./Practicas/Practica04.pdf)
 - [Práctica 5](./Practicas/Practica05.pdf)
 - [Práctica 6](./Practicas/Practica06.pdf)
-- Práctica 7
-- Práctica 8
+
 
 ## 2ª Evaluación 
 
@@ -34,5 +33,10 @@ Programación Multimedia y Dispositivos Móviles - 2º DAM - IES Segundo de Chom
 - UD10 - Interconexión de Apps con servicios de backend: Firebase
 - UD11 - Historia e introducción a los motores de videojuegos: Unity
 - UD12 - Desarrollo de videojuegos 2D y 3D
+
+### Prácticas 1ª Evaluación
+
+- [Práctica 7](./Practicas/Practica07.pdf)
+- Práctica 8
 
 ## I.E.S Segundo de Chomón - Curso 25 26
