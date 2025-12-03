@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
         '/botones' : (context)=> BotonesScreen(),
         '/listas' : (context)=> ListasScreen(),
         '/tarjetas' : (context)=> TarjetasScreen(),
-        '/alertas'  : (context)=> AlertasScreen()
+        '/alertas'  : (context)=> AlertasScreen(),
+        '/sliders'  : (context)=> SlidersScreen()
       },
     );
   }

@@ -1,3 +1,5 @@
+export 'package:componentes/presentation/screens/sliders_screen.dart';
+
 export 'package:componentes/presentation/screens/alerta_screen.dart';
 
 export 'package:componentes/presentation/screens/botones_screen.dart';
