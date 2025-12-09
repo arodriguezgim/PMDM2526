@@ -52,4 +52,16 @@ final menuItems = <MenuItem>[
     link: '/sliders', 
     icono: Icons.check_box,
   ),
+  MenuItem(
+    titulo: 'Animaciones', 
+    subtitulo: 'Un simple ejemplo de animaciones en Flutter', 
+    link: '/animaciones', 
+    icono: Icons.animation,
+  ),
+  MenuItem(
+    titulo: 'Progress Indicator & SnackBar', 
+    subtitulo: 'Un simple ejemplo de Indicators y SnackBar', 
+    link: '/snackbar', 
+    icono: Icons.refresh_rounded,
+  ),
 ];
