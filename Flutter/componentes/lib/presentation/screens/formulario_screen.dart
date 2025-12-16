@@ -1,3 +1,4 @@
+import 'package:componentes/presentation/widgets/text_form_personalizado.dart';
 import 'package:flutter/material.dart';
 
 class FormularioScreen extends StatelessWidget {
@@ -13,14 +14,31 @@ class FormularioScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Column(
             children: [
-              TextFormField(
-                initialValue: 'Alberto R.',
-                autofocus: true,
-                textCapitalization: TextCapitalization.words,
-                onChanged: ( value){
-                  print( value );
-                } ,
-              )
+              TextFormPersonalizado(
+                labelText: 'Nombre',
+                hintText: 'Nombre del usuario',
+                icon: Icons.person,
+              ),
+              SizedBox(height: 20,),
+              TextFormPersonalizado(
+                labelText: 'Apellido',
+                hintText: 'Apellido del usuario',
+                icon: Icons.person_2,
+              ),
+              SizedBox(height: 20,),
+              TextFormPersonalizado(
+                labelText: 'Correo',
+                hintText: 'Email del usuario',
+                icon: Icons.email,
+              ),
+              SizedBox(height: 20,),
+              TextFormPersonalizado(
+                labelText: 'Password',
+                hintText: 'Contraseña del usuario',
+                icon: Icons.lock,
+              ),
+              SizedBox(height: 20,),
+              
             ],
           ),
         ),
@@ -28,3 +46,4 @@ class FormularioScreen extends StatelessWidget {
     );
   }
 }
+
