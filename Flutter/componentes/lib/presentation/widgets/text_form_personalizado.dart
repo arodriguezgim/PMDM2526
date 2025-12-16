@@ -8,13 +8,23 @@ class TextFormPersonalizado extends StatelessWidget {
   final IconData? icon;
   final IconData? suffixIcon;
 
+  final TextInputType? keyboardType;
+  final bool obscureText;
+
+  final String formPropiedad;
+  final Map<String, String> formValues;
+
   const TextFormPersonalizado({
     super.key, 
     this.hintText, 
     this.labelText, 
     this.helperText, 
     this.icon, 
-    this.suffixIcon,
+    this.suffixIcon, 
+    this.keyboardType, 
+    this.obscureText = false, 
+    required this.formPropiedad, 
+    required this.formValues,
   });
 
   @override
@@ -23,10 +33,10 @@ class TextFormPersonalizado extends StatelessWidget {
       //initialValue: 'Alberto R.',
       autofocus: true,
       textCapitalization: TextCapitalization.words,
-      keyboardType: TextInputType.emailAddress,
-      obscureText: true,
+      keyboardType: keyboardType,
+      obscureText: obscureText,
       onChanged: ( value ){
-        print( value );
+        formValues[formPropiedad] = value;
       } ,
       validator: (value) {
         
