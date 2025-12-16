@@ -27,7 +27,25 @@ class ProgressScreen extends StatelessWidget {
           ],
          )
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.remove_red_eye_outlined),
+        onPressed: (){
+          mostrarSnackBar(context);
+        },),
     );
+  }
+  
+  void mostrarSnackBar(BuildContext context) {
+    // Ocultar el Snackbar anterior
+    ScaffoldMessenger.of(context).clearSnackBars();
+
+    final snackbar = SnackBar(
+      content: Text('Hola a DAM 2'),
+      duration: Duration(seconds: 2),
+      action: SnackBarAction(
+        label: 'Ok', 
+        onPressed: (){}),);
+    ScaffoldMessenger.of(context).showSnackBar(snackbar);
   }
 }
 

@@ -64,4 +64,10 @@ final menuItems = <MenuItem>[
     link: '/snackbar', 
     icono: Icons.refresh_rounded,
   ),
+  MenuItem(
+    titulo: 'Formularios',
+    subtitulo: 'Un simple ejemplo de Formularios', 
+    link: '/formulario',
+    icono: Icons.info_outline,
+  )
 ];

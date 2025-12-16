@@ -1,3 +1,5 @@
+export 'package:componentes/presentation/screens/formulario_screen.dart';
+
 export 'package:componentes/presentation/screens/progress_indicator_screen.dart';
 
 export 'package:componentes/presentation/screens/animaciones_screen.dart';
