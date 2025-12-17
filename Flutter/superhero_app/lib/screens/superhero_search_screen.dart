@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:superhero_app/data/model/superhero_response.dart';
 import 'package:superhero_app/data/repository/repository.dart';
@@ -51,12 +52,21 @@ class _SuperheroSearchScreenState extends State<SuperheroSearchScreen> {
                     child: ListView.builder(
                       itemCount: listaSuperHeroes?.length ?? 0,
                       itemBuilder: (context, index) {
-                        //return Text(listaSuperHeroes![index].name);
+                        //return Text(listaSuperHeroes![index].url);
+                        return ClipRRect(
+                          borderRadius: BorderRadiusGeometry.circular(16),
+                          child: Image.network(
+                            'listaSuperHeroes![index].url',
+                            
+                          ),
+                        );
+                        
+                        /*
                         return Column(
                           children: [
                             ListTile(
                               title: Text(listaSuperHeroes![index].name),
-                              subtitle: Text('Subtitulo'),
+                              subtitle: Text(listaSuperHeroes![index].id),
                               trailing: Icon(Icons.arrow_forward_ios),
                               onTap: () {
                                 
@@ -64,7 +74,7 @@ class _SuperheroSearchScreenState extends State<SuperheroSearchScreen> {
                             ),
                             Divider(),
                           ],
-                        );
+                        );*/
                       },
                       ),
                   );
