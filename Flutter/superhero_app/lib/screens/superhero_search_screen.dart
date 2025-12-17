@@ -45,7 +45,29 @@ class _SuperheroSearchScreenState extends State<SuperheroSearchScreen> {
                 } else if ( !snapshot.hasData ){
                   return Text('No existen resultados');
                 } else {
-                  return Text('${snapshot.data?.response}');
+                  // Ahora aqui tenemos un listado de Superheroes
+                  var listaSuperHeroes = snapshot.data?.listaSuperHeroes;
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: listaSuperHeroes?.length ?? 0,
+                      itemBuilder: (context, index) {
+                        //return Text(listaSuperHeroes![index].name);
+                        return Column(
+                          children: [
+                            ListTile(
+                              title: Text(listaSuperHeroes![index].name),
+                              subtitle: Text('Subtitulo'),
+                              trailing: Icon(Icons.arrow_forward_ios),
+                              onTap: () {
+                                
+                              },
+                            ),
+                            Divider(),
+                          ],
+                        );
+                      },
+                      ),
+                  );
                 }
               },)
           ],
