@@ -53,6 +53,7 @@ class _SuperheroSearchScreenState extends State<SuperheroSearchScreen> {
                       itemCount: listaSuperHeroes?.length ?? 0,
                       itemBuilder: (context, index) {
                         //return Text(listaSuperHeroes![index].url);
+                        /*
                         return ClipRRect(
                           borderRadius: BorderRadiusGeometry.circular(16),
                           child: Image.network(
@@ -60,8 +61,8 @@ class _SuperheroSearchScreenState extends State<SuperheroSearchScreen> {
                             
                           ),
                         );
+                        */
                         
-                        /*
                         return Column(
                           children: [
                             ListTile(
@@ -74,7 +75,7 @@ class _SuperheroSearchScreenState extends State<SuperheroSearchScreen> {
                             ),
                             Divider(),
                           ],
-                        );*/
+                        );
                       },
                       ),
                   );
