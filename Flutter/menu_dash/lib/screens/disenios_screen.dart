@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:menu_dash/widgets/header_widget.dart';
+import 'package:menu_dash/widgets/lista_personajes_widget.dart';
 
 class DiseniosScreen extends StatelessWidget {
    
@@ -9,7 +10,12 @@ class DiseniosScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 16, 16, 16),
-      body: HeaderWidget()
+      body: Column(
+        children: [
+          HeaderWidget(),
+          ListaPersonajesWidget(),
+        ],
+      )
     );
   }
 }
