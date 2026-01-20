@@ -15,7 +15,14 @@ class DiseniosScreen extends StatelessWidget {
           HeaderWidget(),
           ListaPersonajesWidget(),
         ],
-      )
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.deepPurpleAccent,
+        onPressed: () {
+        },
+        child: Icon(Icons.add
+        ),
+      ),
     );
   }
 }
