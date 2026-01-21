@@ -37,9 +37,9 @@ class MenuItems {
       ),
     OptionMenuItem(
       color: AppTheme.listaColores[6], 
-      icono: Icons.snooze_outlined, 
-      texto: 'Opcion 6', 
-      screenName: 'opcion6',
+      icono: Icons.qr_code_2_sharp, 
+      texto: 'Lector QR', 
+      screenName: 'lectorqr',
       ),
     OptionMenuItem(
       color: AppTheme.listaColores[7], 
