@@ -41,5 +41,6 @@ Programación Multimedia y Dispositivos Móviles - 2º DAM - IES Segundo de Chom
 - [Práctica 9](./Practicas/Practica09.pdf)
 - [Práctica 10](./Practicas/Practica10.pdf)
 - [Práctica 11](./Practicas/Practica11.pdf)
+- [Práctica 12](./Practicas/Practica12.pdf)
 
 ## I.E.S Segundo de Chomón - Curso 25 26

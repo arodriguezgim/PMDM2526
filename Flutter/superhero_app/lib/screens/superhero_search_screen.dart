@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:superhero_app/data/model/superhero_response.dart';
 import 'package:superhero_app/data/repository/repository.dart';
+import 'package:superhero_app/screens/superhero_detail_screen.dart';
 
 class SuperheroSearchScreen extends StatefulWidget {
   const SuperheroSearchScreen({super.key});
@@ -11,15 +12,13 @@ class SuperheroSearchScreen extends StatefulWidget {
 }
 
 class _SuperheroSearchScreenState extends State<SuperheroSearchScreen> {
-
   Future<SuperHeroResponse?>? _superHeroInfo;
   Repository repository = Repository();
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('SuperHero Search'),),
+      appBar: AppBar(title: Text('SuperHero Search')),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -28,22 +27,22 @@ class _SuperheroSearchScreenState extends State<SuperheroSearchScreen> {
               decoration: InputDecoration(
                 hintText: 'Busca un SuperHéroe',
                 prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder()
+                border: OutlineInputBorder(),
               ),
-              onChanged: ( nombreHeroe ) {
+              onChanged: (nombreHeroe) {
                 setState(() {
-                  _superHeroInfo = repository.getSuperHeroInfo( nombreHeroe );
+                  _superHeroInfo = repository.getSuperHeroInfo(nombreHeroe);
                 });
               },
             ),
             FutureBuilder(
-              future: _superHeroInfo, 
+              future: _superHeroInfo,
               builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting ){
+                if (snapshot.connectionState == ConnectionState.waiting) {
                   return CircularProgressIndicator();
-                } else if ( snapshot.hasError ){
+                } else if (snapshot.hasError) {
                   return Text('Error al realizar la búsqueda');
-                } else if ( !snapshot.hasData ){
+                } else if (!snapshot.hasData) {
                   return Text('No existen resultados');
                 } else {
                   // Ahora aqui tenemos un listado de Superheroes
@@ -62,7 +61,7 @@ class _SuperheroSearchScreenState extends State<SuperheroSearchScreen> {
                           ),
                         );
                         */
-                        
+
                         return Column(
                           children: [
                             ListTile(
@@ -70,21 +69,28 @@ class _SuperheroSearchScreenState extends State<SuperheroSearchScreen> {
                               subtitle: Text(listaSuperHeroes![index].id),
                               trailing: Icon(Icons.arrow_forward_ios),
                               onTap: () {
-                                
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SuperheroDetailScreen(
+                                      superhero: listaSuperHeroes[index],
+                                    ),
+                                  ),
+                                );
                               },
                             ),
                             Divider(),
                           ],
                         );
                       },
-                      ),
+                    ),
                   );
                 }
-              },)
+              },
+            ),
           ],
         ),
       ),
     );
   }
 }
-
