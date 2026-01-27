@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "19546367798",
+    "project_id": "fireflutterdam-47e52",
+    "storage_bucket": "fireflutterdam-47e52.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19546367798:android:17c4cf96d5ad635d56f597",
+        "android_client_info": {
+          "package_name": "com.example.firebase_flutter_dam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4cUV1P4p37PWHrYUZz6t0V9qjqyLvvA4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
