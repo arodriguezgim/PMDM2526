@@ -1,8 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   // Instancia de Firebase Auth
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  // Instancia de GoogleSignIn
+  final GoogleSignIn _googleSignIn = GoogleSignIn.instance; 
+  static bool isInitialize = false;
 
   // Me creo un Stream para que emita cambios en el estado de autenticacion.
   Stream<User?> get authStateChanges => _auth.authStateChanges();
@@ -65,5 +70,42 @@ class AuthService {
       throw Exception('Error al cerrar la sesion: $e');
     }
   } 
+
+  /////////////////////////////////////////////////
+  ///  Iniciar Sesion con Google             //////
+  /////////////////////////////////////////////////
+  Future<void> initSignIn() async {
+    if (!isInitialize){
+      await _googleSignIn.initialize(
+        serverClientId: '19546367798-fl4rs6745evlrf5k95trad5k4u9f6kuh.apps.googleusercontent.com',
+      );
+      isInitialize = true;
+    }
+  }
+  // Iniciar sesion con Google 7.2.0
+  Future<UserCredential?> loginConGoogle() async {
+    try {
+      initSignIn();
+      final GoogleSignInAccount googleUser = await _googleSignIn.authenticate();
+
+      // Si el usuario cancela
+      if ( googleUser == null ) return null;
+
+      final idToken = googleUser.authentication.idToken;
+      
+    } catch (e) {
+      
+    }
+  }
+
+
+
+
+
+
+
+
+
+
 
 }
