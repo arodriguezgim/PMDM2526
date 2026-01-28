@@ -43,3 +43,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Ignoro los archivos de Firebase Auth
+firebase.json
+/lib/firebase_options.dart
