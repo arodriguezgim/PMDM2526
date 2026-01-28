@@ -1,3 +1,4 @@
+import 'package:firebase_flutter_dam/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -12,10 +13,46 @@ class _LoginScreenState extends State<LoginScreen> {
   String email = "";
   String pass = "";
 
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passController = TextEditingController();
-
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
+
+  final _authService = AuthService();
+  bool _isLoading = false;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _signIn() async {
+    if (!_formkey.currentState!.validate()) return;
+    setState(()=> _isLoading = true );
+
+    try {
+      _authService.iniciarSesion(
+        email: _emailController.text.trim(), 
+        password: _passController.text,
+        );
+      // No necesitamos navegar manualmente, el Streambuilder lo hace automaticamente
+    } catch (e) {
+      // Mostramos mensaje al usuario
+      if(mounted){
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.toString()),
+            backgroundColor: Colors.red,
+            )
+        );
+      }
+    } finally {
+      if (mounted){
+        setState(()=> _isLoading = false );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +91,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontSize: 18,
                           )
                         ),
+                        validator: (value) {
+                          if ( value == null || value.isEmpty ){
+                            return 'Por favor  ingresa un correo';
+                          }
+                          if (!value.contains('@')) {
+                            return 'Ingresa un email válido';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     SizedBox(height: 30,),
@@ -77,13 +123,20 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontSize: 18,
                           )
                         ),
+                        validator: (value) {
+                          if ( value == null || value.isEmpty ){
+                            return 'Por favor ingresa una contraseña';
+                          }
+                          if (value.length < 6) {
+                            return 'La contraseña debe tener al menos 6 caracteres';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     SizedBox(height: 30,),
                     GestureDetector(
-                      onTap: () {
-                        
-                      },
+                      onTap: _isLoading ? null : _signIn,
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         padding: EdgeInsets.symmetric(

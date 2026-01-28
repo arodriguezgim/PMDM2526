@@ -1,3 +1,4 @@
+import 'package:firebase_flutter_dam/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -13,11 +14,62 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String pass = "";
   String nombre = "";
 
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passController = TextEditingController();
-  TextEditingController _nombreController = TextEditingController();
-
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passController = TextEditingController();
+  final TextEditingController _nombreController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
+
+  final _authService = AuthService();
+  bool _isLoading = false;
+
+  @override
+  void dispose() {
+    _nombreController.dispose();
+    _emailController.dispose();
+    _passController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _signUp() async {
+    if (!_formkey.currentState!.validate()) return;
+
+    setState(()=> _isLoading = true );
+
+    try {
+      _authService.registroConEmailYContrasena(
+        email: _emailController.text.trim(), 
+        password: _passController.text,
+        );
+      // Mostrar un mensaje de éxito
+      if (mounted){
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Usuario creado correctamente!'),
+            backgroundColor: Colors.green,
+            )
+        );
+      }
+      Navigator.pop(context);
+
+    } catch (e) {
+      // Mostramos mensaje al usuario
+      if(mounted){
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.toString()),
+            backgroundColor: Colors.red,
+            )
+        );
+      }
+    } finally {
+      if (mounted){
+        setState(()=> _isLoading = false );
+      }
+    }
+  }
+
+  
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,6 +129,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             fontSize: 18,
                           )
                         ),
+                        validator: (value) {
+                          if ( value == null || value.isEmpty ){
+                            return 'Por favor  ingresa un correo';
+                          }
+                          if (!value.contains('@')) {
+                            return 'Ingresa un email válido';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     SizedBox(height: 30,),
@@ -100,14 +161,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             fontSize: 18,
                           )
                         ),
+                        validator: (value) {
+                          if ( value == null || value.isEmpty ){
+                            return 'Por favor ingresa una contraseña';
+                          }
+                          if (value.length < 6) {
+                            return 'La contraseña debe tener al menos 6 caracteres';
+                          }
+                          // Validaciones adicionales opcionales
+                          /*
+                          if (!value.contains(RegExp(r'[A-Z]'))) {
+                            return 'Debe contener al menos una mayúscula';
+                          }
+                          if (!value.contains(RegExp(r'[0-9]'))) {
+                            return 'Debe contener al menos un número';
+                          }
+                          */
+                          return null;
+                        },
                       ),
                     ),
                     SizedBox(height: 30,),
                     GestureDetector(
-                      onTap: () {
-                        
-                      },
-                      child: Container(
+                      onTap: _isLoading ? null : _signUp,
+                      child: _isLoading 
+                        ? SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(),
+                        ) 
+                        : Container(
                         width: MediaQuery.of(context).size.width,
                         padding: EdgeInsets.symmetric(
                           vertical: 13,
