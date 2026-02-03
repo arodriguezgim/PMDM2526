@@ -70,6 +70,7 @@ class AuthService {
   /////////////////////////
   Future<void> cerrarSesion() async {
     try {
+      await _googleSignIn.signOut();
       await _auth.signOut();
     } catch (e) {
       throw Exception('Error al cerrar la sesion: $e');
