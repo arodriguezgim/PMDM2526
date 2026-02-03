@@ -1,9 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_flutter_dam/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
-class TareasScreen extends StatelessWidget {
+class TareasScreen extends StatefulWidget {
   const TareasScreen({super.key});
 
+  @override
+  State<TareasScreen> createState() => _TareasScreenState();
+}
+
+class _TareasScreenState extends State<TareasScreen> {
+  final Stream<QuerySnapshot> _tareasStream = FirebaseFirestore.instance
+      .collection('tareas')
+      .snapshots();
   @override
   Widget build(BuildContext context) {
     final authService = AuthService();
@@ -42,11 +51,35 @@ class TareasScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(child: Text('Pagina de tareas')),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        Navigator.pushNamed(context, '/add_tarea');
-      },
-      child: Icon(Icons.add),),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: _tareasStream,
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Text('Error al descargar los datos');
+          }
+
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Text("Loading");
+          }
+
+          return ListView(
+            children: snapshot.data!.docs.map((DocumentSnapshot document) {
+              Map<String, dynamic> data =
+                  document.data()! as Map<String, dynamic>;
+              return ListTile(
+                title: Text(data['titulo']),
+                subtitle: Text(data['descripcion']),
+              );
+            }).toList(),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/add_tarea');
+        },
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
