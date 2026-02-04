@@ -12,6 +12,24 @@ class _AddTareaScreenState extends State<AddTareaScreen> {
   final _titleController = TextEditingController();
   final _descriptionController = TextEditingController();
   DateTime selectedDate = DateTime.now();
+  String? _tareaId;
+  bool _isEditing = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    // Miramos a ver si es Una tarea nueva o Editar alguna que ya tuviéramos
+    final args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+
+    if ( args != null && args['id'] != null ){
+      // Estamos editando una tarea
+      _isEditing = true;
+      _tareaId = args['id'];
+      _titleController.text = args['titulo'] ?? '';
+      _descriptionController.text = args['descripcion'] ?? '';
+    }
+  }
 
   @override
   void dispose() {
