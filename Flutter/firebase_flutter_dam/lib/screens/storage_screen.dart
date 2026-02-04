@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 class StorageScreen extends StatefulWidget {
@@ -14,7 +15,28 @@ class StorageScreen extends StatefulWidget {
 class _StorageScreenState extends State<StorageScreen> {
 
   PlatformFile? selectedFile;
+  UploadTask? uploadTask;
 
+  // Subir el archivo a Firebase Storage
+  Future _subirArchivo() async {
+    if ( selectedFile ==  null ) return;
+    final path = 'dam2/${selectedFile!.name}';
+    final file = File(selectedFile!.path!);
+
+    final ref = FirebaseStorage.instance.ref().child(path);
+    uploadTask = ref.putFile(file);
+
+    // Puedo esperar a que la tarea se complete
+    final snapshot = await uploadTask!.whenComplete(() {
+      
+    },);
+
+    final downloadUrl = await ref.getDownloadURL();
+
+    print('Archivo subido correctamente a: $downloadUrl');
+  }
+
+  // Funcion para seleccionar el archivo
   Future _seleccionarArchivo() async {
     final result = await FilePicker.platform.pickFiles();
     if ( result == null ) return;
@@ -57,9 +79,7 @@ class _StorageScreenState extends State<StorageScreen> {
             ElevatedButton(onPressed: _seleccionarArchivo,
              child: Text('Seleccionar archivo')),
             SizedBox(height: 24,),
-            ElevatedButton(onPressed: () {
-              // Lógica para SUBIR archivos
-            },
+            ElevatedButton(onPressed: _subirArchivo,
              child: Text('Subir archivo')),
           ],
          )
