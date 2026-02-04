@@ -4,6 +4,7 @@ import 'package:firebase_flutter_dam/screens/home_screen.dart';
 import 'package:firebase_flutter_dam/screens/login_screen.dart';
 import 'package:firebase_flutter_dam/screens/register_screen.dart';
 import 'package:firebase_flutter_dam/screens/seleccionar_pantalla_screen.dart';
+import 'package:firebase_flutter_dam/screens/storage_screen.dart';
 import 'package:firebase_flutter_dam/screens/tareas_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         '/home' : (context) => HomeScreen(),
         '/lista_tareas' : (context) => TareasScreen(),
         '/add_tarea' : (context) => AddTareaScreen(),
+        '/storage' : (context) => StorageScreen(),
       },
     );
   }
